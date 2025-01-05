@@ -6,7 +6,6 @@ import { Download, Github, Linkedin, Mail } from 'lucide-react';
 const Hero = ({ isDark }) => {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-
       {/* Capa de Gradiente Oscuro */}
       <div
         className={`absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950 transition-opacity duration-2000 ${isDark ? 'opacity-100' : 'opacity-0'
@@ -20,7 +19,7 @@ const Hero = ({ isDark }) => {
       ></div>
 
       {/* Contenido Principal */}
-      <div className="relative z-10 container mx-auto px-4 py-28 sm:py-24 md:py-32 lg:py-36 max-w-7xl">
+      <div className="relative z-10 container mx-auto px-4 py-28 md:py-32 lg:py-36 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1 space-y-12 md:space-y-16 text-center lg:text-left transition-all duration-2000">
             {/* Integración del componente TypewriterName */}

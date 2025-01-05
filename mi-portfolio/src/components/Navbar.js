@@ -1,3 +1,4 @@
+// src/components/Navbar.js
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 
@@ -31,7 +32,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
             ${hasScrolled
               ? isDark
                 ? 'bg-gradient-to-r from-gray-900/95 via-blue-900/95 to-purple-900/95 backdrop-blur-sm shadow-lg'
-                : 'bg-gradient-to-r from-blue-200/95 via-blue-100/95 to-indigo-100/95 backdrop-blur-sm shadow-lg'
+                : 'bg-gradient-to-r from-blue-300 via-blue-200 to-purple-200 backdrop-blur-sm shadow-lg'
               : 'bg-transparent'
             }
           `}
@@ -92,7 +93,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
               ${
                 isDark
                   ? 'bg-gradient-to-r from-gray-900/90 via-blue-900/90 to-purple-900/90 backdrop-blur-sm'
-                  : 'bg-gradient-to-r from-blue-200/90 via-blue-100/90 to-indigo-100/90 backdrop-blur-sm'
+                  : 'bg-gradient-to-r from-blue-300 via-blue-200 to-purple-200 backdrop-blur-sm'
               }
             `}
           >
