@@ -4,18 +4,30 @@ import { Download, Github, Linkedin, Mail } from 'lucide-react';
 
 const Hero = ({ isDark }) => {
   return (
-    <div className={`min-h-screen flex items-center justify-center transition-colors duration-500 ${isDark
-        ? 'bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950'
-        : 'bg-gradient-to-br from-blue-300 via-blue-200 to-purple-200'
-      }`}>
-      <div className="container mx-auto px-4 py-36 md:py-48 max-w-7xl">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      
+      {/* Capa de Gradiente Oscuro */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950 transition-opacity duration-2000 ${
+          isDark ? 'opacity-100' : 'opacity-0'
+        }`}
+      ></div>
+
+      {/* Capa de Gradiente Claro */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br from-blue-300 via-blue-200 to-purple-200 transition-opacity duration-2000 ${
+          isDark ? 'opacity-0' : 'opacity-100'
+        }`}
+      ></div>
+
+      {/* Contenido Principal */}
+      <div className="relative z-10 container mx-auto px-4 py-36 md:py-48 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="order-2 lg:order-1 space-y-12 md:space-y-16 text-center lg:text-left">
+          <div className="order-2 lg:order-1 space-y-12 md:space-y-16 text-center lg:text-left transition-all duration-2000">
             {/* Integración del componente TypewriterName */}
             <TypewriterName isDark={isDark} />
 
-            <p className={`text-2xl md:text-3xl ${isDark ? 'text-blue-300' : 'text-blue-600'
-              } font-medium`}>
+            <p className={`text-2xl md:text-3xl ${isDark ? 'text-blue-300' : 'text-blue-600'} font-medium transition-all duration-2000`}>
               Full Stack Developer
             </p>
 
@@ -32,18 +44,18 @@ const Hero = ({ isDark }) => {
               </div>
             </div>
 
-            <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'
-              } max-w-2xl mx-auto lg:mx-0`}>
+            <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'} max-w-2xl mx-auto lg:mx-0`}>
               Passionate about building accessible and user-friendly websites.
               Experienced in modern web technologies and creating dynamic applications.
             </p>
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 animate-bounce-in">
               <button
-                className={`flex items-center gap-2 px-8 py-4 rounded-lg font-medium transition-all hover:scale-110 ${isDark
+                className={`flex items-center gap-2 px-8 py-4 rounded-lg font-medium transition-all hover:scale-110 ${
+                  isDark
                     ? 'bg-blue-600 hover:bg-blue-500 text-white'
                     : 'bg-blue-700 hover:bg-blue-600 text-white shadow-lg'
-                  } animate-shake-hover`}>
+                } animate-shake-hover`}>
                 <Download size={24} />
                 Download CV
               </button>
@@ -58,10 +70,11 @@ const Hero = ({ isDark }) => {
                 <a
                   key={index}
                   href={item.href}
-                  className={`text-3xl transition-all hover:scale-125 animate-bounce-hover ${isDark
+                  className={`text-3xl transition-all hover:scale-125 animate-bounce-hover ${
+                    isDark
                       ? 'text-gray-200 hover:text-blue-400'
                       : 'text-gray-700 hover:text-blue-600'
-                    }`}
+                  }`}
                 >
                   <item.icon size={32} />
                 </a>
@@ -74,7 +87,7 @@ const Hero = ({ isDark }) => {
               <div className="absolute -inset-8 rounded-full aura-gradient opacity-75 animate-pulse-slow"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden">
                 <img
-                   src={require('../assets/images/foto.png')}
+                  src={require('../assets/images/foto.png')}
                   alt="Profile"
                   className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 animate-slide-up"
                 />
@@ -191,12 +204,18 @@ const Hero = ({ isDark }) => {
         }
 
         .animate-pulse-slow {
-          animation: pulse 3s ease-in-out infinite;
+          animation: pulse-scale 2.2s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-          0%, 100% { opacity: 0.75; }
-          50% { opacity: 0.5; }
+        @keyframes pulse-scale {
+          0%, 100% {
+            transform: scale(0.9);
+            opacity: 0.75;
+          }
+          50% {
+            transform: scale(1.1);
+           
+          }
         }
       `}</style>
     </div>
