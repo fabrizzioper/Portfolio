@@ -31,8 +31,8 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
             max-w-7xl mx-auto rounded-full transition-all duration-300 ease-in-out
             ${hasScrolled
               ? isDark
-                ? 'bg-gradient-to-r from-gray-900/95 via-blue-900/95 to-purple-900/95 backdrop-blur-sm shadow-lg'
-                : 'bg-gradient-to-r from-blue-300 via-blue-200 to-purple-200 backdrop-blur-sm shadow-lg'
+                ? 'bg-gradient-to-r from-gray-900/85 via-blue-900/85 to-purple-900/85 backdrop-blur-sm shadow-lg'
+                : 'bg-gradient-to-r from-blue-300/85 via-blue-200/85 to-purple-200/85 backdrop-blur-sm shadow-lg'
               : 'bg-transparent'
             }
           `}
@@ -81,19 +81,20 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
           </div>
         </nav>
 
+        {/* Menú móvil sin transiciones */}
         <div
           className={`
-            md:hidden fixed left-0 right-0 px-4 transition-all duration-300 ease-in-out transform
+            md:hidden fixed left-0 right-0 px-4
             ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}
           `}
         >
           <div
             className={`
-              mt-2 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out
+              mt-2 rounded-lg shadow-lg overflow-hidden
               ${
                 isDark
-                  ? 'bg-gradient-to-r from-gray-900/90 via-blue-900/90 to-purple-900/90 backdrop-blur-sm'
-                  : 'bg-gradient-to-r from-blue-300 via-blue-200 to-purple-200 backdrop-blur-sm'
+                  ? 'bg-gradient-to-r from-gray-900/85 via-blue-900/85 to-purple-900/85 backdrop-blur-sm'
+                  : 'bg-gradient-to-r from-blue-300/85 via-blue-200/85 to-purple-200/85 backdrop-blur-sm'
               }
             `}
           >
