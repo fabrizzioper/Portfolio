@@ -27,25 +27,19 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
       <div className="px-4 py-4">
         <nav
           className={`
-          max-w-7xl mx-auto rounded-full transition-all duration-300 ease-in-out
-          ${hasScrolled
-            ? isDark
-              ? 'bg-gradient-to-r from-gray-900/95 via-blue-900/95 to-purple-900/95 backdrop-blur-sm shadow-lg'
-              : 'bg-gradient-to-r from-blue-100/95 via-blue-50/95 to-purple-50/95 backdrop-blur-sm shadow-lg'
-            : 'bg-transparent'
-          }
-        `}
+            max-w-7xl mx-auto rounded-full transition-all duration-300 ease-in-out
+            ${hasScrolled
+              ? isDark
+                ? 'bg-gradient-to-r from-gray-900/95 via-blue-900/95 to-purple-900/95 backdrop-blur-sm shadow-lg'
+                : 'bg-gradient-to-r from-blue-200/95 via-blue-100/95 to-indigo-100/95 backdrop-blur-sm shadow-lg'
+              : 'bg-transparent'
+            }
+          `}
         >
           <div className="px-6 py-3">
             <div className="flex items-center justify-between">
               <div className="flex-shrink-0">
-                <span
-                  className={`font-bold text-xl ${
-                    isDark
-                      ? 'text-white' // Blanco en modo oscuro
-                      : 'text-black' // Negro en modo claro
-                  }`}
-                >
+                <span className={`font-bold text-xl ${isDark ? 'text-white' : 'text-gray-800'}`}>
                   Portfolio
                 </span>
               </div>
@@ -56,14 +50,8 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
                     <a
                       key={item.text}
                       href={item.href}
-                      className={`
-                        px-4 py-2 rounded-full transition-all duration-300 ease-in-out
-                        ${
-                          isDark
-                            ? 'text-white hover:text-gray-300' // Blanco en modo oscuro
-                            : 'text-black hover:text-gray-700' // Negro en modo claro
-                        }
-                      `}
+                      className={`px-4 py-2 rounded-full transition-all duration-300 ease-in-out
+                        ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-800 hover:text-gray-600'}`}
                     >
                       {item.text}
                     </a>
@@ -74,28 +62,16 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
               <div className="flex items-center space-x-4">
                 <button
                   onClick={toggleDarkMode}
-                  className={`
-                    transition-all duration-300 ease-in-out
-                    ${
-                      isDark
-                        ? 'text-white hover:text-gray-300' // Blanco en modo oscuro
-                        : 'text-black hover:text-gray-700' // Negro en modo claro
-                    }
-                  `}
+                  className={`transition-all duration-300 ease-in-out
+                    ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-800 hover:text-gray-600'}`}
                 >
                   {isDark ? <Sun size={24} /> : <Moon size={22} />}
                 </button>
 
                 <button
                   onClick={() => setIsOpen(!isOpen)}
-                  className={`
-                    md:hidden transition-all duration-300 ease-in-out
-                    ${
-                      isDark
-                        ? 'text-white hover:text-gray-300' // Blanco en modo oscuro
-                        : 'text-black hover:text-gray-700' // Negro en modo claro
-                    }
-                  `}
+                  className={`md:hidden transition-all duration-300 ease-in-out
+                    ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-800 hover:text-gray-600'}`}
                 >
                   {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -106,15 +82,19 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
 
         <div
           className={`
-          md:hidden fixed left-0 right-0 px-4 transition-all duration-300 ease-in-out transform
-          ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}
-        `}
+            md:hidden fixed left-0 right-0 px-4 transition-all duration-300 ease-in-out transform
+            ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}
+          `}
         >
           <div
             className={`
-            mt-2 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out
-            ${isDark ? 'bg-gray-800' : 'bg-white'}
-          `}
+              mt-2 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out
+              ${
+                isDark
+                  ? 'bg-gradient-to-r from-gray-900/90 via-blue-900/90 to-purple-900/90 backdrop-blur-sm'
+                  : 'bg-gradient-to-r from-blue-200/90 via-blue-100/90 to-indigo-100/90 backdrop-blur-sm'
+              }
+            `}
           >
             {menuItems.map((item) => (
               <a
@@ -124,8 +104,8 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
                   block px-4 py-3 text-center transition-all duration-300 ease-in-out
                   ${
                     isDark
-                      ? 'text-white hover:bg-gray-700 hover:text-gray-300' // Blanco en modo oscuro
-                      : 'text-black hover:bg-gray-100 hover:text-gray-700' // Negro en modo claro
+                      ? 'text-white hover:bg-gray-700/50 hover:text-gray-300'
+                      : 'text-gray-800 hover:bg-gray-200/50 hover:text-gray-600'
                   }
                 `}
                 onClick={() => setIsOpen(false)}
