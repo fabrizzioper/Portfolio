@@ -1,3 +1,4 @@
+// src/components/Hero.js
 import React from 'react';
 import TypewriterName from './TypewriterName';
 import { Download, Github, Linkedin, Mail } from 'lucide-react';
@@ -27,7 +28,7 @@ const Hero = ({ isDark }) => {
             {/* Integración del componente TypewriterName */}
             <TypewriterName isDark={isDark} />
 
-            <p className={`text-2xl md:text-3xl ${isDark ? 'text-blue-300' : 'text-blue-600'} font-medium transition-all duration-2000`}>
+            <p className={`text-2xl md:text-3xl ${isDark ? 'text-white' : 'text-gray-800'} font-medium transition-colors duration-2000 ease-in-out`}>
               Full Stack Developer
             </p>
 
@@ -70,9 +71,9 @@ const Hero = ({ isDark }) => {
                 <a
                   key={index}
                   href={item.href}
-                  className={`text-3xl transition-all hover:scale-125 animate-bounce-hover ${
+                  className={`text-3xl transition-colors duration-2000 ease-in-out hover:scale-125 animate-bounce-hover ${
                     isDark
-                      ? 'text-gray-200 hover:text-blue-400'
+                      ? 'text-white hover:text-blue-400'
                       : 'text-gray-700 hover:text-blue-600'
                   }`}
                 >
@@ -214,7 +215,7 @@ const Hero = ({ isDark }) => {
           }
           50% {
             transform: scale(1.1);
-           
+            
           }
         }
       `}</style>

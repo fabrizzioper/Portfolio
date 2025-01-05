@@ -6,6 +6,9 @@ const TypewriterName = ({ isDark }) => {
   const fullText = "Hi, I'm Fabrizzio Pereira";
   const [showCursor, setShowCursor] = useState(true);
   const [isTyping, setIsTyping] = useState(true);
+  
+  // Determinar dónde comienza el nombre
+  const nameStartIndex = "Hi, I'm ".length;
 
   useEffect(() => {
     let timeoutId;
@@ -39,18 +42,31 @@ const TypewriterName = ({ isDark }) => {
       clearTimeout(timeoutId);
       clearInterval(cursorInterval);
     };
-  }, []);
+  }, [fullText]);
 
   return (
-    <div className={`transition-colors duration-300 ${isDark ? 'text-white' : 'text-black'}`}>
+    <div className={`transition-colors duration-2000`}>
       <h1 className="text-6xl font-bold whitespace-normal lg:whitespace-nowrap">
-        {text.split('').map((char, index) => (
-          <span key={index}>
-            {char}
-          </span>
-        ))}
+        {text.split('').map((char, index) => {
+          const isNamePart = index >= nameStartIndex;
+
+          return (
+            <span 
+              key={index}
+              className={`transition-colors duration-2000 ${
+                isNamePart 
+                  ? (isDark ? 'text-blue-300' : 'text-blue-700')
+                  : (isDark ? 'text-white' : 'text-black') // "Hi, I'm": negro día, azul noche
+              }`}
+            >
+              {char}
+            </span>
+          );
+        })}
         <span 
-          className={`inline-block w-1 h-12 ml-1 ${showCursor && isTyping ? 'opacity-100' : 'opacity-0'} ${isDark ? 'bg-white' : 'bg-black'}`}
+          className={`inline-block w-1 h-12 ml-1 transition-colors duration-2000 ${
+            showCursor && isTyping ? 'opacity-100' : 'opacity-0'
+          } ${isDark ? 'bg-white' : 'bg-black'}`}
         >
         </span>
       </h1>

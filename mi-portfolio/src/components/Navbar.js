@@ -39,7 +39,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
           <div className="px-6 py-3">
             <div className="flex items-center justify-between">
               <div className="flex-shrink-0">
-                <span className={`font-bold text-xl ${isDark ? 'text-white' : 'text-gray-800'}`}>
+                <span className={`font-bold text-xl ${isDark ? 'text-white' : 'text-gray-700'}`}>
                   Portfolio
                 </span>
               </div>
@@ -51,7 +51,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
                       key={item.text}
                       href={item.href}
                       className={`px-4 py-2 rounded-full transition-all duration-300 ease-in-out
-                        ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-800 hover:text-gray-600'}`}
+                        ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-700 hover:text-gray-600'}`}
                     >
                       {item.text}
                     </a>
@@ -63,7 +63,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
                 <button
                   onClick={toggleDarkMode}
                   className={`transition-all duration-300 ease-in-out
-                    ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-800 hover:text-gray-600'}`}
+                    ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-700 hover:text-gray-600'}`}
                 >
                   {isDark ? <Sun size={24} /> : <Moon size={22} />}
                 </button>
@@ -71,7 +71,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   className={`md:hidden transition-all duration-300 ease-in-out
-                    ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-800 hover:text-gray-600'}`}
+                    ${isDark ? 'text-white hover:text-gray-300' : 'text-gray-700 hover:text-gray-600'}`}
                 >
                   {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -105,7 +105,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
                   ${
                     isDark
                       ? 'text-white hover:bg-gray-700/50 hover:text-gray-300'
-                      : 'text-gray-800 hover:bg-gray-200/50 hover:text-gray-600'
+                      : 'text-gray-700 hover:bg-gray-200/50 hover:text-gray-600'
                   }
                 `}
                 onClick={() => setIsOpen(false)}
