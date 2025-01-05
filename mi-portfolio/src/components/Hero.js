@@ -70,7 +70,7 @@ const Hero = ({ isDark }) => {
           </div>
 
           <div className="hidden lg:block order-1 lg:order-2 animate-float">
-            <div className="relative w-96 h-96 ml-auto">
+            <div className="relative w-96 h-96 ml-40 mb-8">
               <div className="absolute -inset-8 rounded-full aura-gradient opacity-75 animate-pulse-slow"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden">
                 <img
