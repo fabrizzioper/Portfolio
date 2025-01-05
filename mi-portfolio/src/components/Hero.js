@@ -1,0 +1,206 @@
+import React from 'react';
+import TypewriterName from './TypewriterName';
+import { Download, Github, Linkedin, Mail } from 'lucide-react';
+
+const Hero = ({ isDark }) => {
+  return (
+    <div className={`min-h-screen flex items-center justify-center transition-colors duration-500 ${isDark
+        ? 'bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950'
+        : 'bg-gradient-to-br from-blue-300 via-blue-200 to-purple-200'
+      }`}>
+      <div className="container mx-auto px-4 py-36 md:py-48 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="order-2 lg:order-1 space-y-12 md:space-y-16 text-center lg:text-left">
+            {/* Integración del componente TypewriterName */}
+            <TypewriterName isDark={isDark} />
+
+            <p className={`text-2xl md:text-3xl ${isDark ? 'text-blue-300' : 'text-blue-600'
+              } font-medium`}>
+              Full Stack Developer
+            </p>
+
+            <div className="block lg:hidden animate-float my-24">
+              <div className="relative w-64 h-64 mx-auto">
+                <div className="absolute -inset-8 rounded-full aura-gradient opacity-75 animate-pulse-slow"></div>
+                <div className="relative w-full h-full rounded-full overflow-hidden">
+                  <img
+                    src={require('../assets/images/foto.png')}
+                    alt="Foto de perfil"
+                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 animate-slide-up"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'
+              } max-w-2xl mx-auto lg:mx-0`}>
+              Passionate about building accessible and user-friendly websites.
+              Experienced in modern web technologies and creating dynamic applications.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 animate-bounce-in">
+              <button
+                className={`flex items-center gap-2 px-8 py-4 rounded-lg font-medium transition-all hover:scale-110 ${isDark
+                    ? 'bg-blue-600 hover:bg-blue-500 text-white'
+                    : 'bg-blue-700 hover:bg-blue-600 text-white shadow-lg'
+                  } animate-shake-hover`}>
+                <Download size={24} />
+                Download CV
+              </button>
+            </div>
+
+            <div className="flex gap-8 justify-center lg:justify-start">
+              {[
+                { icon: Github, href: '#' },
+                { icon: Linkedin, href: '#' },
+                { icon: Mail, href: '#' }
+              ].map((item, index) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  className={`text-3xl transition-all hover:scale-125 animate-bounce-hover ${isDark
+                      ? 'text-gray-200 hover:text-blue-400'
+                      : 'text-gray-700 hover:text-blue-600'
+                    }`}
+                >
+                  <item.icon size={32} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden lg:block order-1 lg:order-2 animate-float">
+            <div className="relative w-96 h-96 ml-auto">
+              <div className="absolute -inset-8 rounded-full aura-gradient opacity-75 animate-pulse-slow"></div>
+              <div className="relative w-full h-full rounded-full overflow-hidden">
+                <img
+                   src={require('../assets/images/foto.png')}
+                  alt="Profile"
+                  className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 animate-slide-up"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Estilos personalizados */}
+      <style jsx>{`
+        .aura-gradient {
+          background: radial-gradient(
+            circle at center,
+            rgba(139, 92, 246, 0.5) 0%,
+            rgba(96, 165, 250, 0.5) 25%,
+            rgba(147, 51, 234, 0.5) 50%,
+            rgba(79, 70, 229, 0.3) 75%,
+            transparent 100%
+          );
+          filter: blur(20px);
+          transform: scale(1.2);
+        }
+
+        .typing-text {
+          display: inline-block;
+          position: relative;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .typing-text::after {
+          content: '';
+          position: absolute;
+          right: -4px;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 70%;
+          width: 2px;
+          background-color: ${isDark ? '#fff' : '#000'};
+          animation: cursor-blink 0.7s infinite;
+        }
+
+        @keyframes cursor-blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+          100% { transform: translateY(0px); }
+        }
+
+        .animate-slide-up {
+          opacity: 0;
+          animation: slideUp 1s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+          from { 
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-bounce-in {
+          animation: bounceIn 1s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+        }
+
+        @keyframes bounceIn {
+          0% {
+            transform: scale(0.3);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 0.8;
+          }
+          70% { transform: scale(0.9); }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
+        .animate-shake-hover:hover {
+          animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+          0% { transform: translateX(0); }
+          25% { transform: translateX(-5px); }
+          50% { transform: translateX(5px); }
+          75% { transform: translateX(-5px); }
+          100% { transform: translateX(0); }
+        }
+
+        .animate-bounce-hover:hover {
+          animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+
+        .animate-pulse-slow {
+          animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 0.75; }
+          50% { opacity: 0.5; }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Hero;
