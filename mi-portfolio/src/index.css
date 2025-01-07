@@ -3,9 +3,9 @@
 @import "tailwindcss/utilities";
 
 /* Solo aplicamos la regla a un contenedor específico */
-* {
-    user-select: none;         /* propiedad estándar */
-    -webkit-user-select: none; /* prefijo para navegadores basados en WebKit */
-    touch-action: none;        /* evita que el gesto táctil se traduzca en scroll en las zonas arrastrables */
+/* * {
+    user-select: none;         
+    -webkit-user-select: none; 
+    touch-action: none;        
   }
-  
+   */

@@ -1,9 +1,9 @@
-// src/components/Hero.js
+// src/components/Profile.js
 import React from 'react';
 import TypewriterName from './TypewriterName';
 import { Download, Github, Linkedin, Mail } from 'lucide-react';
 
-const Hero = ({ isDark }) => {
+const Profile = ({ isDark }) => {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Capa de Gradiente Oscuro */}
@@ -42,7 +42,7 @@ const Hero = ({ isDark }) => {
               </div>
             </div>
 
-            <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'} max-w-2xl mx-auto lg:mx-0`}>
+            <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'} max-w-2xl mx-auto   px-2 sm:px-0 md:px-0   lg:mx-0`}>
               Passionate about building accessible and user-friendly websites.
               Experienced in modern web technologies and creating dynamic applications.
             </p>
@@ -218,4 +218,4 @@ const Hero = ({ isDark }) => {
   );
 };
 
-export default Hero;
+export default Profile;
