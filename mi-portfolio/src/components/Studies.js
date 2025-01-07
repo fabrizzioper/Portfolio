@@ -72,12 +72,12 @@ const SortableTechItem = ({ id, icon, name, size, color, isDark }) => {
       {...listeners}
       className={`
         draggable-item
-        shadow-lg flex flex-col items-center gap-3 p-6 rounded-xl
+         shadow-none flex flex-col items-center gap-3 p-6 rounded-xl
         transition-all duration-300 cursor-move
         ${isDark
-          ? 'bg-gray-800/50 hover:bg-blue-900/30 text-white'
-          : 'bg-white/80 hover:bg-blue-50/80 text-gray-800'}
-        backdrop-blur-sm
+          ? 'bg-transparent hover:bg-white/20 text-white'
+          : 'bg-transparent hover:bg-blue-200/80 text-gray-800'}
+        
       `}
     >
       <i className={`${icon} ${size || 'text-4xl'} ${color}`}></i>
@@ -123,7 +123,7 @@ const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
         cursor-move flex flex-col h-full
         ${isDark
           ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
-          : 'bg-white/80 text-gray-800 hover:bg-white'}
+          : 'bg-white/40 text-gray-800 hover:bg-white/60'}
         backdrop-blur-sm
       `}
     >
@@ -351,7 +351,7 @@ const Studies = ({ isDark }) => {
                         cursor-move flex flex-col h-full
                         ${isDark
                           ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
-                          : 'bg-white/80 text-gray-800 hover:bg-white'}
+                          : 'bg-white/40 text-gray-800 hover:bg-white'}
                         backdrop-blur-sm
                       `}
                     >

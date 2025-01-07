@@ -94,7 +94,8 @@ const Profile = ({ isDark }) => {
       </div>
 
       {/* Estilos personalizados */}
-      <style jsx>{`
+<style>
+  {`
         .aura-gradient {
           background: radial-gradient(
             circle at center,
