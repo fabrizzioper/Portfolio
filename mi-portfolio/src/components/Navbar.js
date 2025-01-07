@@ -18,10 +18,11 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
 
   const menuItems = [
     { text: 'Inicio', href: '#' },
-    { text: 'Productos', href: '#' },
+    { text: 'Competencias', href: '#competencias' },
     { text: 'Servicios', href: '#' },
     { text: 'Contacto', href: '#' },
   ];
+  
 
   return (
     <div className={`fixed w-full top-0 left-0 z-50 ${isDark ? 'dark' : ''}`}>

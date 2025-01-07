@@ -2,10 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* Solo aplicamos la regla a un contenedor específico */
-/* * {
-    user-select: none;         
-    -webkit-user-select: none; 
-    touch-action: none;        
-  }
-   */
+html {
+  scroll-behavior: smooth;
+}

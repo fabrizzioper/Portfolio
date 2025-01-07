@@ -22,15 +22,8 @@ const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/
   typeof navigator !== 'undefined' ? navigator.userAgent : ''
 );
 
-// .draggable-item { user-select: none; touch-action: none; ... }
 const SortableCard = ({ id, children }) => {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-  } = useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -51,13 +44,7 @@ const SortableCard = ({ id, children }) => {
 };
 
 const SortableTechItem = ({ id, icon, name, size, color, isDark }) => {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-  } = useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -72,12 +59,15 @@ const SortableTechItem = ({ id, icon, name, size, color, isDark }) => {
       {...listeners}
       className={`
         draggable-item
-         shadow-none flex flex-col items-center gap-3 p-6 rounded-xl
-        transition-all duration-300 cursor-move
+        shadow-none
+        flex flex-col items-center gap-3 p-6 rounded-xl
+        cursor-move
+        /* 1) Unificamos la transición */
+        transition-all duration-500 ease-in-out
+        /* Fondo transparente con hover suave */
         ${isDark
           ? 'bg-transparent hover:bg-white/20 text-white'
           : 'bg-transparent hover:bg-blue-200/80 text-gray-800'}
-        
       `}
     >
       <i className={`${icon} ${size || 'text-4xl'} ${color}`}></i>
@@ -91,19 +81,16 @@ const SortableTechItem = ({ id, icon, name, size, color, isDark }) => {
 };
 
 const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
-  // 1) Creamos los hooks SIEMPRE (fuera de cualquier `if`)
+  // 1) Creamos los hooks (fuera de cualquier if)
   const pointerSensor = useSensor(PointerSensor);
   const keyboardSensor = useSensor(KeyboardSensor, {
     coordinateGetter: sortableKeyboardCoordinates,
   });
-
-  // 2) Grupo de sensores para escritorio:
+  // 2) Para escritorio
   const desktopSensors = useSensors(pointerSensor, keyboardSensor);
-
-  // 3) Grupo de sensores vacío para móvil:
+  // 3) Para móvil
   const mobileSensors = useSensors();
-
-  // 4) Elegimos cuál usar según `isMobile`:
+  // 4) Elegimos según sea móvil o no
   const sensorsToUse = isMobile ? mobileSensors : desktopSensors;
 
   const handleDragEnd = (event) => {
@@ -118,18 +105,21 @@ const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
   return (
     <div
       className={`
-        rounded-3xl p-10 transition-all duration-300
+        rounded-3xl p-10 cursor-move flex flex-col h-full
+        backdrop-blur-sm
+        /* 2) Unificamos la transición en la tarjeta */
+        transition-all duration-500 ease-in-out
         hover:shadow-2xl hover:shadow-blue-500/40
-        cursor-move flex flex-col h-full
+        /* Fondo y colores según modo */
         ${isDark
           ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
           : 'bg-white/40 text-gray-800 hover:bg-white/60'}
-        backdrop-blur-sm
       `}
     >
       <h3
         className={`
           text-xl font-semibold mb-6 flex items-center gap-3
+          transition-colors duration-500 ease-in-out
           ${isDark ? 'text-white' : 'text-gray-800'}
         `}
       >
@@ -262,7 +252,7 @@ const Studies = ({ isDark }) => {
     },
   ]);
 
-  // Lo mismo para la sección “Educación”:
+  // Para “Educación” también
   const pointerSensor = useSensor(PointerSensor);
   const keyboardSensor = useSensor(KeyboardSensor, {
     coordinateGetter: sortableKeyboardCoordinates,
@@ -294,7 +284,8 @@ const Studies = ({ isDark }) => {
       <div
         className={`
           absolute inset-0 bg-gradient-to-bl from-purple-950 via-blue-950 to-green-950
-          transition-opacity duration-2000
+          /* 3) Suavizamos la transición del gradiente oscuro */
+          transition-opacity duration-500 ease-in-out
           ${isDark ? 'opacity-100' : 'opacity-0'}
         `}
       />
@@ -302,14 +293,11 @@ const Studies = ({ isDark }) => {
       <div
         className={`
           absolute inset-0 bg-gradient-to-bl from-purple-200 via-blue-200 to-yellow-100
-          transition-opacity duration-2000
+          /* 4) Suavizamos la transición del gradiente claro */
+          transition-opacity duration-500 ease-in-out
           ${isDark ? 'opacity-0' : 'opacity-100'}
         `}
       />
-
-
-
-
 
       {/* Contenido Principal */}
       <main
@@ -326,8 +314,8 @@ const Studies = ({ isDark }) => {
           <h2
             className={`
               text-4xl font-bold mb-12
+              transition-colors duration-500 ease-in-out
               ${isDark ? 'text-white' : 'text-gray-800'}
-              transition-colors duration-300
             `}
           >
             Educación
@@ -346,13 +334,14 @@ const Studies = ({ isDark }) => {
                   <SortableCard key={item.id} id={item.id}>
                     <div
                       className={`
-                        rounded-3xl p-10 transition-all duration-300
+                        rounded-3xl p-10 cursor-move flex flex-col h-full
+                        backdrop-blur-sm
+                        /* 5) Unificamos la transición en las tarjetas de educación */
+                        transition-all duration-500 ease-in-out
                         hover:shadow-2xl hover:shadow-blue-500/40
-                        cursor-move flex flex-col h-full
                         ${isDark
                           ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
-                          : 'bg-white/40 text-gray-800 hover:bg-white'}
-                        backdrop-blur-sm
+                          : 'bg-white/40 text-gray-800 hover:bg-white/60'}
                       `}
                     >
                       <div className="flex justify-between items-start">
@@ -360,6 +349,7 @@ const Studies = ({ isDark }) => {
                           <h3
                             className={`
                               text-xl font-semibold
+                              transition-colors duration-500 ease-in-out
                               ${isDark ? 'text-white' : 'text-gray-800'}
                             `}
                           >
@@ -368,6 +358,7 @@ const Studies = ({ isDark }) => {
                           <p
                             className={`
                               mt-2
+                              transition-colors duration-500 ease-in-out
                               ${isDark ? 'text-gray-300' : 'text-gray-600'}
                             `}
                           >
@@ -377,14 +368,16 @@ const Studies = ({ isDark }) => {
                         <div
                           className={`
                             w-12 h-12 rounded-md flex items-center justify-center
+                            transition-colors duration-500 ease-in-out
                             ${isDark ? 'bg-gray-800' : 'bg-gray-100'}
                           `}
                         >
                           <i
                             className={`
                               ${item.icon}
-                              ${isDark ? 'text-white' : 'text-gray-800'}
                               text-xl
+                              transition-colors duration-500 ease-in-out
+                              ${isDark ? 'text-white' : 'text-gray-800'}
                             `}
                           />
                         </div>
@@ -392,6 +385,7 @@ const Studies = ({ isDark }) => {
                       <p
                         className={`
                           mt-4
+                          transition-colors duration-500 ease-in-out
                           ${isDark ? 'text-gray-300' : 'text-gray-600'}
                         `}
                       >
@@ -403,6 +397,7 @@ const Studies = ({ isDark }) => {
                             key={index}
                             className={`
                               px-3 py-1 rounded-md text-sm
+                              transition-colors duration-500 ease-in-out
                               ${isDark
                                 ? 'bg-blue-900/50 text-blue-200'
                                 : 'bg-blue-50 text-blue-600'
@@ -426,8 +421,8 @@ const Studies = ({ isDark }) => {
           <h2
             className={`
               text-4xl font-bold mb-12
+              transition-colors duration-500 ease-in-out
               ${isDark ? 'text-white' : 'text-gray-800'}
-              transition-colors duration-300
             `}
           >
             Tecnologías
