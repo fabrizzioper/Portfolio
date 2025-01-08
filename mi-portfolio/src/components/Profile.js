@@ -5,27 +5,27 @@ import { Download, Github, Linkedin, Mail } from 'lucide-react';
 
 const Profile = ({ isDark }) => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Capa de Gradiente Oscuro */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950 transition-opacity duration-2000 ${isDark ? 'opacity-100' : 'opacity-0'
+        className={`absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950 transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'
           }`}
       ></div>
 
       {/* Capa de Gradiente Claro */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br from-blue-300 via-blue-200 to-purple-200 transition-opacity duration-2000 ${isDark ? 'opacity-0' : 'opacity-100'
+        className={`absolute inset-0 bg-gradient-to-br from-blue-300 via-blue-200 to-purple-200 transition-opacity duration-500 ${isDark ? 'opacity-0' : 'opacity-100'
           }`}
       ></div>
 
       {/* Contenido Principal */}
       <div className="relative z-10 container mx-auto px-4 py-28 md:py-32 lg:py-36 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="order-2 lg:order-1 space-y-12 md:space-y-16 text-center lg:text-left transition-all duration-2000">
+          <div className="order-2 lg:order-1 space-y-12 md:space-y-16 text-center lg:text-left transition-all duration-500">
             {/* Integración del componente TypewriterName */}
             <TypewriterName isDark={isDark} />
 
-            <p className={`text-2xl md:text-3xl ${isDark ? 'text-white' : 'text-gray-800'} font-medium transition-colors duration-2000 ease-in-out`}>
+            <p className={`text-2xl md:text-3xl ${isDark ? 'text-white' : 'text-gray-800'} font-medium transition-colors duration-500 ease-in-out`}>
               Full Stack Developer
             </p>
 
@@ -42,7 +42,7 @@ const Profile = ({ isDark }) => {
               </div>
             </div>
 
-            <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'} max-w-2xl mx-auto   px-2 sm:px-0 md:px-0   lg:mx-0`}>
+            <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'} max-w-2xl mx-auto px-2 sm:px-0 md:px-0 lg:mx-0`}>
               Passionate about building accessible and user-friendly websites.
               Experienced in modern web technologies and creating dynamic applications.
             </p>
@@ -67,7 +67,7 @@ const Profile = ({ isDark }) => {
                 <a
                   key={index}
                   href={item.href}
-                  className={`text-3xl transition-colors duration-2000 ease-in-out hover:scale-125 animate-bounce-hover ${isDark
+                  className={`text-3xl transition-colors duration-500 ease-in-out hover:scale-125 animate-bounce-hover ${isDark
                       ? 'text-white hover:text-blue-400'
                       : 'text-gray-700 hover:text-blue-600'
                     }`}
@@ -94,127 +94,127 @@ const Profile = ({ isDark }) => {
       </div>
 
       {/* Estilos personalizados */}
-<style>
-  {`
-        .aura-gradient {
-          background: radial-gradient(
-            circle at center,
-            rgba(139, 92, 246, 0.5) 0%,
-            rgba(96, 165, 250, 0.5) 25%,
-            rgba(147, 51, 234, 0.5) 50%,
-            rgba(79, 70, 229, 0.3) 75%,
-            transparent 100%
-          );
-          filter: blur(20px);
-          transform: scale(1.2);
-        }
+      <style>
+        {`
+          .aura-gradient {
+            background: radial-gradient(
+              circle at center,
+              rgba(139, 92, 246, 0.5) 0%,
+              rgba(96, 165, 250, 0.5) 25%,
+              rgba(147, 51, 234, 0.5) 50%,
+              rgba(79, 70, 229, 0.3) 75%,
+              transparent 100%
+            );
+            filter: blur(20px);
+            transform: scale(1.2);
+          }
 
-        .typing-text {
-          display: inline-block;
-          position: relative;
-          white-space: nowrap;
-          overflow: hidden;
-        }
+          .typing-text {
+            display: inline-block;
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+          }
 
-        .typing-text::after {
-          content: '';
-          position: absolute;
-          right: -4px;
-          top: 50%;
-          transform: translateY(-50%);
-          height: 70%;
-          width: 2px;
-          background-color: ${isDark ? '#fff' : '#000'};
-          animation: cursor-blink 0.7s infinite;
-        }
+          .typing-text::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 70%;
+            width: 2px;
+            background-color: ${isDark ? '#fff' : '#000'};
+            animation: cursor-blink 0.7s infinite;
+          }
 
-        @keyframes cursor-blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
+          @keyframes cursor-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+          }
 
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
+          .animate-float {
+            animation: float 6s ease-in-out infinite;
+          }
 
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-          100% { transform: translateY(0px); }
-        }
+          @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+          }
 
-        .animate-slide-up {
-          opacity: 0;
-          animation: slideUp 1s ease-out forwards;
-        }
-
-        @keyframes slideUp {
-          from { 
+          .animate-slide-up {
             opacity: 0;
-            transform: translateY(30px);
+            animation: slideUp 1s ease-out forwards;
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+
+          @keyframes slideUp {
+            from { 
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-        }
 
-        .animate-bounce-in {
-          animation: bounceIn 1s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
-        }
-
-        @keyframes bounceIn {
-          0% {
-            transform: scale(0.3);
-            opacity: 0;
+          .animate-bounce-in {
+            animation: bounceIn 0.7s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
           }
-          50% {
-            transform: scale(1.05);
-            opacity: 0.8;
+
+          @keyframes bounceIn {
+            0% {
+              transform: scale(0.3);
+              opacity: 0;
+            }
+            50% {
+              transform: scale(1.05);
+              opacity: 0.8;
+            }
+            70% { transform: scale(0.9); }
+            100% {
+              transform: scale(1);
+              opacity: 1;
+            }
           }
-          70% { transform: scale(0.9); }
-          100% {
-            transform: scale(1);
-            opacity: 1;
+
+          .animate-shake-hover:hover {
+            animation: shake 0.5s ease-in-out;
           }
-        }
 
-        .animate-shake-hover:hover {
-          animation: shake 0.5s ease-in-out;
-        }
-
-        @keyframes shake {
-          0% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          50% { transform: translateX(5px); }
-          75% { transform: translateX(-5px); }
-          100% { transform: translateX(0); }
-        }
-
-        .animate-bounce-hover:hover {
-          animation: bounce 0.5s ease-in-out;
-        }
-
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-
-        .animate-pulse-slow {
-          animation: pulse-scale 2.2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-scale {
-          0%, 100% {
-            transform: scale(0.9);
-            opacity: 0.75;
+          @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
           }
-          50% {
-            transform: scale(1.1);
-           
+
+          .animate-bounce-hover:hover {
+            animation: bounce 0.5s ease-in-out;
           }
-        }
-      `}</style>
+
+          @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+          }
+
+          .animate-pulse-slow {
+            animation: pulse-scale 2.2s ease-in-out infinite;
+          }
+
+          @keyframes pulse-scale {
+            0%, 100% {
+              transform: scale(0.9);
+              opacity: 0.75;
+            }
+            50% {
+              transform: scale(1.1);
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

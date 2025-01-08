@@ -1,3 +1,4 @@
+// src/components/Studies.js
 import React, { useState } from 'react';
 import {
   DndContext,
@@ -60,20 +61,18 @@ const SortableTechItem = ({ id, icon, name, size, color, isDark }) => {
       className={`
         draggable-item
         shadow-none
-        flex flex-col items-center gap-3 p-6 rounded-xl
+        flex flex-col items-center gap-2 p-3 rounded-xl
         cursor-move
-        /* 1) Unificamos la transición */
         transition-all duration-500 ease-in-out
-        /* Fondo transparente con hover suave */
         ${isDark
           ? 'bg-transparent hover:bg-white/20 text-white'
           : 'bg-transparent hover:bg-blue-200/80 text-gray-800'}
       `}
     >
-      <i className={`${icon} ${size || 'text-4xl'} ${color}`}></i>
-      <span
-        className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-800'}`}
-      >
+      {/* Ajuste: por defecto text-3xl → text-2xl para iconos */}
+      <i className={`${icon} ${size || 'text-2xl'} ${color}`} />
+      {/* Ajuste: text-sm se puede mantener o pasar a text-xs si se quiere aún más compacto */}
+      <span className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-800'}`}>
         {name}
       </span>
     </div>
@@ -81,16 +80,12 @@ const SortableTechItem = ({ id, icon, name, size, color, isDark }) => {
 };
 
 const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
-  // 1) Creamos los hooks (fuera de cualquier if)
   const pointerSensor = useSensor(PointerSensor);
   const keyboardSensor = useSensor(KeyboardSensor, {
     coordinateGetter: sortableKeyboardCoordinates,
   });
-  // 2) Para escritorio
   const desktopSensors = useSensors(pointerSensor, keyboardSensor);
-  // 3) Para móvil
   const mobileSensors = useSensors();
-  // 4) Elegimos según sea móvil o no
   const sensorsToUse = isMobile ? mobileSensors : desktopSensors;
 
   const handleDragEnd = (event) => {
@@ -105,24 +100,24 @@ const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
   return (
     <div
       className={`
-        rounded-3xl p-10 cursor-move flex flex-col h-full
+        rounded-2xl p-6 cursor-move flex flex-col h-full
         backdrop-blur-sm
-        /* 2) Unificamos la transición en la tarjeta */
         transition-all duration-500 ease-in-out
         hover:shadow-2xl hover:shadow-blue-500/40
-        /* Fondo y colores según modo */
         ${isDark
           ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
           : 'bg-white/40 text-gray-800 hover:bg-white/60'}
       `}
     >
+      {/* Ajuste: text-lg → text-base, mb-4 → mb-3 */}
       <h3
         className={`
-          text-xl font-semibold mb-6 flex items-center gap-3
+          text-base font-semibold mb-3 flex items-center gap-2
           transition-colors duration-500 ease-in-out
           ${isDark ? 'text-white' : 'text-gray-800'}
         `}
       >
+        {/* Ajuste: icon sizes, gap un poco menor */}
         <i className={`${icon} ${isDark ? 'text-white' : 'text-gray-800'}`} />
         {title}
       </h3>
@@ -135,7 +130,8 @@ const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
           items={items.map((item) => item.id)}
           strategy={rectSortingStrategy}
         >
-          <div className="grid grid-cols-3 gap-6">
+          {/* Ajuste: gap-4 → gap-3 */}
+          <div className="grid grid-cols-3 gap-3">
             {items.map((item) => (
               <SortableTechItem
                 key={item.id}
@@ -239,7 +235,7 @@ const Studies = ({ isDark }) => {
           name: 'PostgreSQL',
           icon: 'fas fa-database',
           color: 'text-green-400',
-          size: 'text-3xl',
+          size: 'text-3xl', // Mantener si se desea que DB luzca un poco más grande
         },
         {
           id: 'db-2',
@@ -252,7 +248,6 @@ const Studies = ({ isDark }) => {
     },
   ]);
 
-  // Para “Educación” también
   const pointerSensor = useSensor(PointerSensor);
   const keyboardSensor = useSensor(KeyboardSensor, {
     coordinateGetter: sortableKeyboardCoordinates,
@@ -279,179 +274,194 @@ const Studies = ({ isDark }) => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Capa de Gradiente Oscuro */}
+    <>
+      {/* Contenedor que abarca toda la pantalla */}
       <div
+        id="competencias"
         className={`
-          absolute inset-0 bg-gradient-to-bl from-purple-950 via-blue-950 to-green-950
-          /* 3) Suavizamos la transición del gradiente oscuro */
+          relative
+          min-h-screen
+          overflow-hidden
+          flex flex-col
+          justify-center
+          items-center
+          /* Gradientes + transición suave */
           transition-opacity duration-500 ease-in-out
-          ${isDark ? 'opacity-100' : 'opacity-0'}
         `}
-      />
-      {/* Capa de Gradiente Claro */}
-      <div
-        className={`
-          absolute inset-0 bg-gradient-to-bl from-purple-200 via-blue-200 to-yellow-100
-          /* 4) Suavizamos la transición del gradiente claro */
-          transition-opacity duration-500 ease-in-out
-          ${isDark ? 'opacity-0' : 'opacity-100'}
-        `}
-      />
-
-      {/* Contenido Principal */}
-      <main
-        className="
-          relative z-10
-          container max-w-7xl mx-auto
-          px-8 sm:px-4 md:px-4
-          space-y-12
-          pb-16 md:pb-24
-        "
       >
-        {/* Sección Educación */}
-        <section className="space-y-8">
-          <h2
-            className={`
-              text-4xl font-bold mb-12
-              transition-colors duration-500 ease-in-out
-              ${isDark ? 'text-white' : 'text-gray-800'}
-            `}
-          >
-            Educación
-          </h2>
-          <DndContext
-            sensors={sensorsToUse}
-            collisionDetection={closestCenter}
-            onDragEnd={(event) => handleDragEnd(event, educationData, setEducationData)}
-          >
-            <SortableContext
-              items={educationData.map((item) => item.id)}
-              strategy={horizontalListSortingStrategy}
+        {/* Capa de Gradiente Oscuro */}
+        <div
+          className={`
+            absolute inset-0 bg-gradient-to-bl from-purple-950 via-blue-950 to-green-950
+            transition-opacity duration-500 ease-in-out
+            ${isDark ? 'opacity-100' : 'opacity-0'}
+          `}
+        />
+        {/* Capa de Gradiente Claro */}
+        <div
+          className={`
+            absolute inset-0 bg-gradient-to-bl from-purple-200 via-blue-200 to-yellow-100
+            transition-opacity duration-500 ease-in-out
+            ${isDark ? 'opacity-0' : 'opacity-100'}
+          `}
+        />
+
+        {/* Contenido Principal, centrado */}
+        {/* Ajuste en px-4 → px-3 si se quiere aún más ajustado */}
+        <main className="relative z-10 w-full max-w-7xl px-4 sm:px-4 md:px-4">
+          {/* Sección Educación */}
+          {/* Ajuste: space-y-8 → space-y-6 */}
+          <section className="space-y-6">
+            {/* text-3xl → text-2xl, mb-8 → mb-6 */}
+            <h2
+              className={`
+                text-2xl font-bold mb-6
+                transition-colors duration-500 ease-in-out
+                ${isDark ? 'text-white' : 'text-gray-800'}
+              `}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                {educationData.map((item) => (
-                  <SortableCard key={item.id} id={item.id}>
-                    <div
-                      className={`
-                        rounded-3xl p-10 cursor-move flex flex-col h-full
-                        backdrop-blur-sm
-                        /* 5) Unificamos la transición en las tarjetas de educación */
-                        transition-all duration-500 ease-in-out
-                        hover:shadow-2xl hover:shadow-blue-500/40
-                        ${isDark
-                          ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
-                          : 'bg-white/40 text-gray-800 hover:bg-white/60'}
-                      `}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <h3
-                            className={`
-                              text-xl font-semibold
-                              transition-colors duration-500 ease-in-out
-                              ${isDark ? 'text-white' : 'text-gray-800'}
-                            `}
-                          >
-                            {item.title}
-                          </h3>
-                          <p
-                            className={`
-                              mt-2
-                              transition-colors duration-500 ease-in-out
-                              ${isDark ? 'text-gray-300' : 'text-gray-600'}
-                            `}
-                          >
-                            {item.period}
-                          </p>
-                        </div>
-                        <div
-                          className={`
-                            w-12 h-12 rounded-md flex items-center justify-center
-                            transition-colors duration-500 ease-in-out
-                            ${isDark ? 'bg-gray-800' : 'bg-gray-100'}
-                          `}
-                        >
-                          <i
-                            className={`
-                              ${item.icon}
-                              text-xl
-                              transition-colors duration-500 ease-in-out
-                              ${isDark ? 'text-white' : 'text-gray-800'}
-                            `}
-                          />
-                        </div>
-                      </div>
-                      <p
+              Educación
+            </h2>
+            <DndContext
+              sensors={sensorsToUse}
+              collisionDetection={closestCenter}
+              onDragEnd={(event) => handleDragEnd(event, educationData, setEducationData)}
+            >
+              <SortableContext
+                items={educationData.map((item) => item.id)}
+                strategy={horizontalListSortingStrategy}
+              >
+                {/* Ajuste: gap-6 → gap-4 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+                  {educationData.map((item) => (
+                    <SortableCard key={item.id} id={item.id}>
+                      <div
                         className={`
-                          mt-4
-                          transition-colors duration-500 ease-in-out
-                          ${isDark ? 'text-gray-300' : 'text-gray-600'}
+                          rounded-2xl p-6 cursor-move flex flex-col h-full
+                          backdrop-blur-sm
+                          transition-all duration-500 ease-in-out
+                          hover:shadow-2xl hover:shadow-blue-500/40
+                          ${isDark
+                            ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
+                            : 'bg-white/40 text-gray-800 hover:bg-white/60'}
                         `}
                       >
-                        {item.degree}
-                      </p>
-                      <div className="mt-4 flex gap-2">
-                        {item.tags.map((tag, index) => (
-                          <span
-                            key={index}
+                        <div className="flex justify-between items-start">
+                          <div>
+                            {/* text-lg → text-base */}
+                            <h3
+                              className={`
+                                text-base font-semibold
+                                transition-colors duration-500 ease-in-out
+                                ${isDark ? 'text-white' : 'text-gray-800'}
+                              `}
+                            >
+                              {item.title}
+                            </h3>
+                            {/* mt-2 se puede quedar o pasar a mt-1 si se quiere aún menor */}
+                            <p
+                              className={`
+                                mt-1
+                                transition-colors duration-500 ease-in-out
+                                ${isDark ? 'text-gray-300' : 'text-gray-600'}
+                              `}
+                            >
+                              {item.period}
+                            </p>
+                          </div>
+                          {/* w-10 h-10 → w-8 h-8 */}
+                          <div
                             className={`
-                              px-3 py-1 rounded-md text-sm
+                              w-8 h-8 rounded-md flex items-center justify-center
                               transition-colors duration-500 ease-in-out
-                              ${isDark
-                                ? 'bg-blue-900/50 text-blue-200'
-                                : 'bg-blue-50 text-blue-600'
-                              }
+                              ${isDark ? 'bg-gray-800' : 'bg-gray-100'}
                             `}
                           >
-                            {tag}
-                          </span>
-                        ))}
+                            {/* text-lg → text-base */}
+                            <i
+                              className={`
+                                ${item.icon}
+                                text-base
+                                transition-colors duration-500 ease-in-out
+                                ${isDark ? 'text-white' : 'text-gray-800'}
+                              `}
+                            />
+                          </div>
+                        </div>
+                        {/* mt-3 → mt-2 */}
+                        <p
+                          className={`
+                            mt-2
+                            transition-colors duration-500 ease-in-out
+                            ${isDark ? 'text-gray-300' : 'text-gray-600'}
+                          `}
+                        >
+                          {item.degree}
+                        </p>
+                        {/* mt-3 → mt-2, gap-2 → gap-1 */}
+                        <div className="mt-2 flex gap-1 flex-wrap">
+                          {item.tags.map((tag, index) => (
+                            <span
+                              key={index}
+                              className={`
+                                px-2 py-1 rounded-md text-xs
+                                transition-colors duration-500 ease-in-out
+                                ${isDark
+                                  ? 'bg-blue-900/50 text-blue-200'
+                                  : 'bg-blue-50 text-blue-600'}
+                              `}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </SortableCard>
-                ))}
-              </div>
-            </SortableContext>
-          </DndContext>
-        </section>
+                    </SortableCard>
+                  ))}
+                </div>
+              </SortableContext>
+            </DndContext>
+          </section>
 
-        {/* Sección Tecnologías */}
-        <section className="space-y-8">
-          <h2
-            className={`
-              text-4xl font-bold mb-12
-              transition-colors duration-500 ease-in-out
-              ${isDark ? 'text-white' : 'text-gray-800'}
-            `}
-          >
-            Tecnologías
-          </h2>
-          <DndContext
-            sensors={sensorsToUse}
-            collisionDetection={closestCenter}
-            onDragEnd={(event) => handleDragEnd(event, techData, setTechData)}
-          >
-            <SortableContext
-              items={techData.map((item) => item.id)}
-              strategy={horizontalListSortingStrategy}
+          {/* Sección Competencias */}
+          {/* space-y-8 → space-y-6, mt-12 → mt-8 */}
+          <section className="space-y-6 mt-8">
+            <h2
+              className={`
+                text-2xl font-bold mb-6
+                transition-colors duration-500 ease-in-out
+                ${isDark ? 'text-white' : 'text-gray-800'}
+              `}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch perspective-1000">
-                {techData.map((item) => (
-                  <SortableCard key={item.id} id={item.id}>
-                    <TechCard
-                      {...item}
-                      isDark={isDark}
-                      onItemsReorder={(newItems) => handleTechItemsReorder(item.id, newItems)}
-                    />
-                  </SortableCard>
-                ))}
-              </div>
-            </SortableContext>
-          </DndContext>
-        </section>
-      </main>
-    </div>
+              Competencias
+            </h2>
+            <DndContext
+              sensors={sensorsToUse}
+              collisionDetection={closestCenter}
+              onDragEnd={(event) => handleDragEnd(event, techData, setTechData)}
+            >
+              <SortableContext
+                items={techData.map((item) => item.id)}
+                strategy={horizontalListSortingStrategy}
+              >
+                {/* gap-6 → gap-4 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch perspective-1000">
+                  {techData.map((item) => (
+                    <SortableCard key={item.id} id={item.id}>
+                      <TechCard
+                        {...item}
+                        isDark={isDark}
+                        onItemsReorder={(newItems) => handleTechItemsReorder(item.id, newItems)}
+                      />
+                    </SortableCard>
+                  ))}
+                </div>
+              </SortableContext>
+            </DndContext>
+          </section>
+        </main>
+      </div>
+    </>
   );
 };
 
