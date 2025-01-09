@@ -98,14 +98,14 @@ const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
   return (
     <div
       className={`
-        rounded-2xl p-6 flex flex-col
+        rounded-2xl p-6 flex flex-col h-full
         backdrop-blur-sm
         transition-all duration-500 ease-in-out
         hover:shadow-2xl hover:shadow-blue-500/40
         ${isDark
           ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
           : 'bg-white/40 text-gray-800 hover:bg-white/60'}
-        2xl:max-h-60 2xl:p-4
+        h-full 2xl:max-h-60 2xl:p-4
       `}
     >
       <h3
@@ -147,9 +147,9 @@ const Studies = ({ isDark }) => {
   const [educationData, setEducationData] = useState([
     {
       id: 'edu-1',
-      title: 'Universidad Nacional de Madrid',
-      period: '2018 - 2022',
-      degree: 'Ingeniería en Sistemas Computacionales',
+      title: 'UPC - Universidad Perurana de Ciencias Aplicadas',
+      period: '2022 - 2026',
+      degree: 'Ingeniería en Software',
       tags: ['Desarrollo Web', 'Sistemas'],
       icon: 'fas fa-university',
     },
@@ -283,6 +283,7 @@ const Studies = ({ isDark }) => {
           items-center
           transition-opacity duration-500 ease-in-out
           scroll-mt-24 
+          pb-8 md:pb-0 /* Añadido: Más espacio abajo en móviles */
         `}
       >
         {/* Capa de Gradiente Oscuro */}
@@ -329,14 +330,14 @@ const Studies = ({ isDark }) => {
                     <SortableCard key={item.id} id={item.id}>
                       <div
                         className={`
-                          rounded-2xl p-6 flex flex-col
+                          rounded-2xl p-6 flex flex-col h-full
                           backdrop-blur-sm
                           transition-all duration-500 ease-in-out
                           hover:shadow-2xl hover:shadow-blue-500/40
                           ${isDark
                             ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
                             : 'bg-white/40 text-gray-800 hover:bg-white/60'}
-                          2xl:max-h-60 2xl:p-4
+                          h-full 2xl:max-h-60 2xl:p-4
                         `}
                       >
                         <div className="flex justify-between items-start">
@@ -363,8 +364,6 @@ const Studies = ({ isDark }) => {
                           <div
                             className={`
                               w-8 h-8 rounded-md flex items-center justify-center
-                              transition-colors duration-500 ease-in-out
-                              ${isDark ? 'bg-gray-800' : 'bg-gray-100'}
                             `}
                           >
                             <i
@@ -410,7 +409,7 @@ const Studies = ({ isDark }) => {
             </DndContext>
           </section>
 
-          {/* Sección Competencias */}
+          {/* Sección Tecnologías */}
           <section className="space-y-6 mt-8">
             <h2
               className={`

@@ -43,19 +43,23 @@ const Profile = ({ isDark }) => {
             </div>
 
             <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'} max-w-2xl mx-auto px-2 sm:px-0 md:px-0 lg:mx-0`}>
-              Passionate about building accessible and user-friendly websites.
-              Experienced in modern web technologies and creating dynamic applications.
+            Estudiante de Ingeniería de Software apasionado por la innovación y el aprendizaje continuo, 
+            con habilidades en trabajo en equipo y comunicación.
             </p>
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 animate-bounce-in">
-              <button
+              {/* Botón de Descargar CV como enlace */}
+              <a
+                href="public/CV_FabrizzioPereira.pdf" // Ruta al CV en la carpeta public
+                download
                 className={`flex items-center gap-2 px-8 py-4 rounded-lg font-medium transition-all hover:scale-110 ${isDark
                     ? 'bg-blue-600 hover:bg-blue-500 text-white'
                     : 'bg-blue-700 hover:bg-blue-600 text-white shadow-lg'
-                  } animate-shake-hover`}>
+                  } animate-shake-hover`}
+              >
                 <Download size={24} />
                 Descargar CV
-              </button>
+              </a>
             </div>
 
             <div className="flex gap-8 justify-center lg:justify-start">
