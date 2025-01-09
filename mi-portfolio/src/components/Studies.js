@@ -37,7 +37,7 @@ const SortableCard = ({ id, children }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="h-full draggable-item"
+      className="draggable-item"
     >
       {children}
     </div>
@@ -69,9 +69,7 @@ const SortableTechItem = ({ id, icon, name, size, color, isDark }) => {
           : 'bg-transparent hover:bg-blue-200/80 text-gray-800'}
       `}
     >
-      {/* Ajuste: por defecto text-3xl → text-2xl para iconos */}
       <i className={`${icon} ${size || 'text-2xl'} ${color}`} />
-      {/* Ajuste: text-sm se puede mantener o pasar a text-xs si se quiere aún más compacto */}
       <span className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-800'}`}>
         {name}
       </span>
@@ -100,16 +98,16 @@ const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
   return (
     <div
       className={`
-        rounded-2xl p-6 cursor-move flex flex-col h-full
+        rounded-2xl p-6 flex flex-col
         backdrop-blur-sm
         transition-all duration-500 ease-in-out
         hover:shadow-2xl hover:shadow-blue-500/40
         ${isDark
           ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
           : 'bg-white/40 text-gray-800 hover:bg-white/60'}
+        2xl:max-h-60 2xl:p-4
       `}
     >
-      {/* Ajuste: text-lg → text-base, mb-4 → mb-3 */}
       <h3
         className={`
           text-base font-semibold mb-3 flex items-center gap-2
@@ -117,7 +115,6 @@ const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
           ${isDark ? 'text-white' : 'text-gray-800'}
         `}
       >
-        {/* Ajuste: icon sizes, gap un poco menor */}
         <i className={`${icon} ${isDark ? 'text-white' : 'text-gray-800'}`} />
         {title}
       </h3>
@@ -130,7 +127,6 @@ const TechCard = ({ title, icon, items, onItemsReorder, isDark }) => {
           items={items.map((item) => item.id)}
           strategy={rectSortingStrategy}
         >
-          {/* Ajuste: gap-4 → gap-3 */}
           <div className="grid grid-cols-3 gap-3">
             {items.map((item) => (
               <SortableTechItem
@@ -235,14 +231,14 @@ const Studies = ({ isDark }) => {
           name: 'PostgreSQL',
           icon: 'fas fa-database',
           color: 'text-green-400',
-          size: 'text-3xl', // Mantener si se desea que DB luzca un poco más grande
+          size: 'text-2xl', // Ajustado a text-2xl
         },
         {
           id: 'db-2',
           name: 'MySQL',
           icon: 'fas fa-database',
           color: 'text-orange-400',
-          size: 'text-3xl',
+          size: 'text-2xl', // Ajustado a text-2xl
         },
       ],
     },
@@ -285,8 +281,8 @@ const Studies = ({ isDark }) => {
           flex flex-col
           justify-center
           items-center
-          /* Gradientes + transición suave */
           transition-opacity duration-500 ease-in-out
+          scroll-mt-24 
         `}
       >
         {/* Capa de Gradiente Oscuro */}
@@ -307,15 +303,12 @@ const Studies = ({ isDark }) => {
         />
 
         {/* Contenido Principal, centrado */}
-        {/* Ajuste en px-4 → px-3 si se quiere aún más ajustado */}
-        <main className="relative z-10 w-full max-w-7xl px-4 sm:px-4 md:px-4">
+        <main className="relative z-10 w-full max-w-6xl px-4 sm:px-4 md:px-4">
           {/* Sección Educación */}
-          {/* Ajuste: space-y-8 → space-y-6 */}
           <section className="space-y-6">
-            {/* text-3xl → text-2xl, mb-8 → mb-6 */}
             <h2
               className={`
-                text-2xl font-bold mb-6
+                text-2xl font-bold mb-6 px-2 sm:px-0
                 transition-colors duration-500 ease-in-out
                 ${isDark ? 'text-white' : 'text-gray-800'}
               `}
@@ -331,24 +324,23 @@ const Studies = ({ isDark }) => {
                 items={educationData.map((item) => item.id)}
                 strategy={horizontalListSortingStrategy}
               >
-                {/* Ajuste: gap-6 → gap-4 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
                   {educationData.map((item) => (
                     <SortableCard key={item.id} id={item.id}>
                       <div
                         className={`
-                          rounded-2xl p-6 cursor-move flex flex-col h-full
+                          rounded-2xl p-6 flex flex-col
                           backdrop-blur-sm
                           transition-all duration-500 ease-in-out
                           hover:shadow-2xl hover:shadow-blue-500/40
                           ${isDark
                             ? 'bg-gray-900/50 text-white hover:bg-gray-800/50'
                             : 'bg-white/40 text-gray-800 hover:bg-white/60'}
+                          2xl:max-h-60 2xl:p-4
                         `}
                       >
                         <div className="flex justify-between items-start">
                           <div>
-                            {/* text-lg → text-base */}
                             <h3
                               className={`
                                 text-base font-semibold
@@ -358,7 +350,6 @@ const Studies = ({ isDark }) => {
                             >
                               {item.title}
                             </h3>
-                            {/* mt-2 se puede quedar o pasar a mt-1 si se quiere aún menor */}
                             <p
                               className={`
                                 mt-1
@@ -369,7 +360,6 @@ const Studies = ({ isDark }) => {
                               {item.period}
                             </p>
                           </div>
-                          {/* w-10 h-10 → w-8 h-8 */}
                           <div
                             className={`
                               w-8 h-8 rounded-md flex items-center justify-center
@@ -377,7 +367,6 @@ const Studies = ({ isDark }) => {
                               ${isDark ? 'bg-gray-800' : 'bg-gray-100'}
                             `}
                           >
-                            {/* text-lg → text-base */}
                             <i
                               className={`
                                 ${item.icon}
@@ -388,7 +377,6 @@ const Studies = ({ isDark }) => {
                             />
                           </div>
                         </div>
-                        {/* mt-3 → mt-2 */}
                         <p
                           className={`
                             mt-2
@@ -398,7 +386,6 @@ const Studies = ({ isDark }) => {
                         >
                           {item.degree}
                         </p>
-                        {/* mt-3 → mt-2, gap-2 → gap-1 */}
                         <div className="mt-2 flex gap-1 flex-wrap">
                           {item.tags.map((tag, index) => (
                             <span
@@ -424,16 +411,15 @@ const Studies = ({ isDark }) => {
           </section>
 
           {/* Sección Competencias */}
-          {/* space-y-8 → space-y-6, mt-12 → mt-8 */}
           <section className="space-y-6 mt-8">
             <h2
               className={`
-                text-2xl font-bold mb-6
+                text-2xl font-bold mb-6 px-2 sm:px-0
                 transition-colors duration-500 ease-in-out
                 ${isDark ? 'text-white' : 'text-gray-800'}
               `}
             >
-              Competencias
+              Tecnologías
             </h2>
             <DndContext
               sensors={sensorsToUse}
@@ -444,7 +430,6 @@ const Studies = ({ isDark }) => {
                 items={techData.map((item) => item.id)}
                 strategy={horizontalListSortingStrategy}
               >
-                {/* gap-6 → gap-4 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch perspective-1000">
                   {techData.map((item) => (
                     <SortableCard key={item.id} id={item.id}>

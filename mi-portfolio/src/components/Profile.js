@@ -19,7 +19,7 @@ const Profile = ({ isDark }) => {
       ></div>
 
       {/* Contenido Principal */}
-      <div className="relative z-10 container mx-auto px-4 py-28 md:py-32 lg:py-36 max-w-7xl">
+      <div className="relative z-10 container mx-auto px-4 py-28 md:py-24 lg:py-28 max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1 space-y-12 md:space-y-16 text-center lg:text-left transition-all duration-500">
             {/* Integración del componente TypewriterName */}
@@ -29,7 +29,7 @@ const Profile = ({ isDark }) => {
               Full Stack Developer
             </p>
 
-            <div className="block lg:hidden animate-float my-24">
+            <div className="block lg:hidden animate-float my-16">
               <div className="relative w-64 h-64 mx-auto">
                 <div className="absolute -inset-8 rounded-full aura-gradient opacity-75 animate-pulse-slow"></div>
                 <div className="relative w-full h-full rounded-full overflow-hidden">
@@ -54,15 +54,15 @@ const Profile = ({ isDark }) => {
                     : 'bg-blue-700 hover:bg-blue-600 text-white shadow-lg'
                   } animate-shake-hover`}>
                 <Download size={24} />
-                Download CV
+                Descargar CV
               </button>
             </div>
 
             <div className="flex gap-8 justify-center lg:justify-start">
               {[
-                { icon: Github, href: '#' },
-                { icon: Linkedin, href: '#' },
-                { icon: Mail, href: '#' }
+                { icon: Github, href: 'https://github.com/fabrizzioper' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/fabrizzioper' },
+                { icon: Mail, href: 'mailto:fabrizzioper@gmail.com' }
               ].map((item, index) => (
                 <a
                   key={index}
@@ -71,6 +71,8 @@ const Profile = ({ isDark }) => {
                       ? 'text-white hover:text-blue-400'
                       : 'text-gray-700 hover:text-blue-600'
                     }`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <item.icon size={32} />
                 </a>

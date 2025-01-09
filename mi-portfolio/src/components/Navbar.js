@@ -17,19 +17,18 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
   }, []);
 
   const menuItems = [
-    { text: 'Inicio', href: '#inicio' }, // Cambiado a '#inicio'
+    { text: 'Inicio', href: '#inicio' },
     { text: 'Competencias', href: '#competencias' },
     { text: 'Servicios', href: '#servicios' },
     { text: 'Contacto', href: '#contacto' },
   ];
-  
 
   return (
     <div className={`fixed w-full top-0 left-0 z-50 ${isDark ? 'dark' : ''}`}>
-      <div className="px-4 py-4">
+      <div className="px-4 py-3">
         <nav
           className={`
-            max-w-7xl mx-auto rounded-full transition-all duration-300 ease-in-out
+            max-w-6xl mx-auto rounded-full transition-all duration-300 ease-in-out
             ${hasScrolled
               ? isDark
                 ? 'bg-gradient-to-r from-gray-900/85 via-blue-900/85 to-purple-900/85 backdrop-blur-sm shadow-lg'
@@ -82,7 +81,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
           </div>
         </nav>
 
-        {/* Menú móvil sin transiciones */}
+        {/* Menú móvil */}
         <div
           className={`
             md:hidden fixed left-0 right-0 px-4
@@ -124,6 +123,8 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
 };
 
 export default Navbar;
+
+
 
 
 
