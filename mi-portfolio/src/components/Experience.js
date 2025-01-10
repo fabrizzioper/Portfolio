@@ -1,3 +1,4 @@
+// src/components/ExperienceCarousel.js
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Calendar } from 'lucide-react';
 
@@ -76,7 +77,7 @@ const ExperienceCard = ({ data, position, isDark }) => {
                   rounded-xl p-4 transition-all duration-300 md:hover:-translate-y-1
                   ${isDark
                     ? 'bg-gray-800/50 md:hover:bg-gray-700/50 md:hover:shadow-lg md:hover:shadow-blue-500/20'
-                    : ' bg-gray-300/30   md:hover:bg-white md:hover:shadow-lg md:hover:shadow-purple-400'
+                    : 'bg-gray-300/30 md:hover:bg-white md:hover:shadow-lg md:hover:shadow-purple-400'
                   }
                   ${index >= 3 ? 'hidden md:block' : ''}
                 `}
@@ -152,14 +153,15 @@ const ExperienceCarousel = ({ isDark }) => {
         justify-center
         items-center
         transition-opacity duration-500 ease-in-out
-        scroll-mt-24 
+        scroll-mt-[25px] md:scroll-mt-24 /* Ajuste de scroll-margin-top para móviles y escritorio */
         pb-8 md:pb-0
       `}
     >
       {/* Gradiente de fondo oscuro */}
       <div
         className={`
-          absolute inset-0 bg-gradient-to-br from-green-950 via-blue-950 to-purple-950 
+          absolute inset-0 bg-gradient-to-br from-green-950 via-blue-950  to-cyan-800
+
           transition-opacity duration-500 
           ${isDark ? 'opacity-100 md:opacity-100' : 'opacity-0'}
         `}
@@ -168,7 +170,7 @@ const ExperienceCarousel = ({ isDark }) => {
       {/* Gradiente de fondo claro */}
       <div
         className={`
-          absolute inset-0 bg-gradient-to-br from-yellow-100 via-blue-200 to-purple-200 
+          absolute inset-0 bg-gradient-to-br from-yellow-100 via-blue-200 to-green-200 
           transition-opacity duration-500 
           ${isDark ? 'opacity-0' : 'opacity-100 md:opacity-100'}
         `}
