@@ -148,19 +148,20 @@ const Studies = ({ isDark }) => {
     {
       id: 'edu-1',
       title: 'UPC - Universidad Perurana de Ciencias Aplicadas',
-      period: '2022 - 2026',
+      period: 'Marzo 2022 – En curso',
       degree: 'Ingeniería en Software',
-      tags: ['Desarrollo Web', 'Sistemas'],
+      tags: ['Desarrollo Web'],
       icon: 'fas fa-university',
     },
     {
       id: 'edu-2',
-      title: 'Instituto Tecnológico de Barcelona',
-      period: '2022 - 2023',
-      degree: 'Máster en Desarrollo Full Stack',
-      tags: ['Full Stack', 'Cloud'],
+      title: 'ICPNA',
+      period: 'Junio 2023 – Octubre 2024',
+      degree: 'Inglés',
+      tags: ['Intermedio B1'],
       icon: 'fas fa-graduation-cap',
     },
+    
   ]);
 
   const [techData, setTechData] = useState([

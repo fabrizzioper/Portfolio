@@ -1,7 +1,7 @@
-<!-- import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Calendar } from 'lucide-react';
 
-const ExperienceCard = ({ data, position }) => {
+const ExperienceCard = ({ data, position, isDark }) => {
   const getTransformStyles = () => {
     switch (position) {
       case 'prev':
@@ -19,49 +19,64 @@ const ExperienceCard = ({ data, position }) => {
     w-[90vw] 
     md:w-[750px] 
     min-h-[350px] 
-    h-auto 
+    max-h-[80vh] 
+    overflow-y-auto
     mx-auto 
     rounded-lg 
     shadow-md 
     p-4 
     md:p-6 
-    bg-white 
+    ${isDark ? 'bg-gray-900/50 text-white hover:bg-gray-800/50' : 'bg-white/40 text-gray-800 hover:bg-white/60'}
     flex 
     flex-col 
     justify-between
+    backdrop-blur-sm
+    transition-all
+    duration-500
+    ease-in-out
   `;
 
   return (
     <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${getTransformStyles()}`}>
       <div className={mainCardClasses}>
         <div className="mb-4">
-          <h2 className="text-lg font-bold text-gray-800 mb-1">{data.company}</h2>
-          <h3 className="text-base font-medium text-blue-600">{data.role}</h3>
+          <h2 className={`text-lg font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-800'}`}>
+            {data.company}
+          </h2>
+          <h3 className={`text-base font-medium ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+            {data.role}
+          </h3>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between text-sm text-gray-600 mb-4 gap-2">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between text-sm mb-4 gap-2">
           <div className="flex items-center gap-2">
-            <MapPin size={16} className="text-blue-500" />
-            <span>{data.location}</span>
+            <MapPin size={16} className={isDark ? 'text-blue-400' : 'text-blue-500'} />
+            <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{data.location}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Calendar size={16} className="text-blue-500" />
-            <span>{data.period}</span>
+            <Calendar size={16} className={isDark ? 'text-blue-400' : 'text-blue-500'} />
+            <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{data.period}</span>
           </div>
         </div>
 
         <div>
-          <h4 className="text-base font-medium text-gray-800 mb-4">Responsabilidades Principales</h4>
+          <h4 className={`text-base font-medium mb-4 ${isDark ? 'text-white' : 'text-gray-800'}`}>
+            Responsabilidades Principales
+          </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {data.responsibilities.map((resp, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-xl p-4 transition-all duration-300 hover:bg-white hover:shadow-md hover:-translate-y-1"
+                className={`rounded-xl p-4 transition-all duration-300 hover:-translate-y-1
+                  ${isDark 
+                    ? 'bg-gray-800/50 hover:bg-gray-700/50 hover:shadow-lg hover:shadow-blue-500/20' 
+                    : 'bg-white hover:bg-white hover:shadow-lg hover:shadow-purple-400'
+                  }`}
               >
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-3">
                   <i className="fas fa-code text-white text-sm"></i>
                 </div>
-                <p className="text-xs text-gray-600 leading-relaxed">
+                <p className={`text-xs leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                   {resp}
                 </p>
               </div>
@@ -73,14 +88,13 @@ const ExperienceCard = ({ data, position }) => {
   );
 };
 
-const FullscreenCarousel = () => {
+const ExperienceCarousel = ({ isDark }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [positions, setPositions] = useState([]);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const carouselRef = useRef(null);
 
-  // Minimum swipe distance in pixels
   const minSwipeDistance = 50;
 
   useEffect(() => {
@@ -105,28 +119,28 @@ const FullscreenCarousel = () => {
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    
-    if (isLeftSwipe) {
+    if (distance > minSwipeDistance) {
       nextSlide();
-    } else if (isRightSwipe) {
+    } else if (distance < -minSwipeDistance) {
       prevSlide();
     }
   };
 
   return (
-    <section className="relative h-screen w-full bg-[#111827] flex items-center justify-center overflow-hidden">
+    <section id="servicios" className={`min-h-screen flex items-center justify-center overflow-hidden relative scroll-mt-24`}>
+      {/* Gradiente de fondo oscuro */}
+      <div className={`absolute inset-0 bg-gradient-to-br from-green-950 via-blue-950 to-purple-950 transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+      
+      {/* Gradiente de fondo claro */}
+      <div className={`absolute inset-0 bg-gradient-to-br from-yellow-100 via-blue-200 to-purple-200 transition-opacity duration-500 ${isDark ? 'opacity-0' : 'opacity-100'}`}></div>
+
       <div 
-        className="w-full max-w-4xl h-[450px] relative flex items-center justify-center"
+        className="w-full max-w-4xl h-[90vh] md:h-[450px] relative flex items-center justify-center"
         ref={carouselRef}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
@@ -134,30 +148,38 @@ const FullscreenCarousel = () => {
       >
         <div className="relative w-full h-full">
           {experiences.map((exp, index) => (
-            <ExperienceCard key={index} data={exp} position={positions[index]} />
+            <ExperienceCard 
+              key={index} 
+              data={exp} 
+              position={positions[index]} 
+              isDark={isDark}
+            />
           ))}
         </div>
 
-        {/* Navigation buttons - Only visible on larger screens */}
         <button
           onClick={prevSlide}
-          className="absolute left-6 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-sm group z-30 hidden md:block"
+          className={`absolute left-6 top-1/2 -translate-y-1/2 p-2 rounded-full transition-colors duration-500 ease-in-out backdrop-blur-sm group z-30 hidden md:block
+            ${isDark 
+              ? 'bg-white/5 hover:bg-white/10 border border-white/10' 
+              : 'bg-white/30 hover:bg-white/40 border border-white/20'}`}
         >
-          <ChevronLeft size={16} className="text-white" />
+          <ChevronLeft size={16} className={isDark ? 'text-white' : 'text-gray-700'} />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-6 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-sm group z-30 hidden md:block"
+          className={`absolute right-6 top-1/2 -translate-y-1/2 p-2 rounded-full transition-colors duration-500 ease-in-out backdrop-blur-sm group z-30 hidden md:block
+            ${isDark 
+              ? 'bg-white/5 hover:bg-white/10 border border-white/10' 
+              : 'bg-white/30 hover:bg-white/40 border border-white/20'}`}
         >
-          <ChevronRight size={16} className="text-white" />
+          <ChevronRight size={16} className={isDark ? 'text-white' : 'text-gray-700'} />
         </button>
       </div>
     </section>
   );
 };
-
-export default FullscreenCarousel;
 
 const experiences = [
   {
@@ -196,4 +218,6 @@ const experiences = [
       "Creé contenido visual y textual para redes sociales y plataformas de venta en línea, optimizando el alcance y mejorando la conversión de ventas."
     ]
   }
-]; -->
+];
+
+export default ExperienceCarousel;

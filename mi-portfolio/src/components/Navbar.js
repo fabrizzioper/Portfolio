@@ -19,7 +19,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
   const menuItems = [
     { text: 'Inicio', href: '#inicio' },
     { text: 'Competencias', href: '#competencias' },
-    { text: 'Servicios', href: '#servicios' },
+    { text: 'Experiencia', href: '#experiencia' },
     { text: 'Contacto', href: '#contacto' },
   ];
 
