@@ -43,18 +43,18 @@ const Profile = ({ isDark }) => {
             </div>
 
             <p className={`text-xl ${isDark ? 'text-gray-200' : 'text-gray-700'} max-w-2xl mx-auto px-2 sm:px-0 md:px-0 lg:mx-0`}>
-            Estudiante de Ingeniería de Software apasionado por la innovación y el aprendizaje continuo, 
-            con habilidades en trabajo en equipo y comunicación.
+              Estudiante de Ingeniería de Software apasionado por la innovación y el aprendizaje continuo,
+              con habilidades en trabajo en equipo y comunicación.
             </p>
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 animate-bounce-in">
               {/* Botón de Descargar CV como enlace */}
               <a
-                href="public/CV_FabrizzioPereira.pdf" // Ruta al CV en la carpeta public
+                href="/CV_FabrizzioPereira.pdf" // Ruta al CV en la carpeta public
                 download
                 className={`flex items-center gap-2 px-8 py-4 rounded-lg font-medium transition-all hover:scale-110 ${isDark
-                    ? 'bg-blue-600 hover:bg-blue-500 text-white'
-                    : 'bg-blue-700 hover:bg-blue-600 text-white shadow-lg'
+                  ? 'bg-blue-600 hover:bg-blue-500 text-white'
+                  : 'bg-blue-700 hover:bg-blue-600 text-white shadow-lg'
                   } animate-shake-hover`}
               >
                 <Download size={24} />
@@ -72,8 +72,8 @@ const Profile = ({ isDark }) => {
                   key={index}
                   href={item.href}
                   className={`text-3xl transition-colors duration-500 ease-in-out hover:scale-125 animate-bounce-hover ${isDark
-                      ? 'text-white hover:text-blue-400'
-                      : 'text-gray-700 hover:text-blue-600'
+                    ? 'text-white hover:text-blue-400'
+                    : 'text-gray-700 hover:text-blue-600'
                     }`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -219,7 +219,7 @@ const Profile = ({ isDark }) => {
               transform: scale(1.1);
             }
           }
-        `}
+       `}
       </style>
     </div>
   );

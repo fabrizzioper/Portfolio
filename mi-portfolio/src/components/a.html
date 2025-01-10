@@ -1,0 +1,149 @@
+<!-- import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, MapPin, Calendar } from 'lucide-react';
+const ExperienceCard = ({ data, position }) => {
+  const getTransformStyles = () => {
+    switch (position) {
+      case 'prev': // Tarjeta izquierda visible
+        return '-translate-x-[50%] scale-95 opacity-50 z-10'; // Más cerca del centro
+      case 'next': // Tarjeta derecha visible
+        return 'translate-x-[50%] scale-95 opacity-50 z-10'; // Más cerca del centro
+      case 'current': // Tarjeta principal sin opacidad
+        return 'translate-x-0 scale-100 opacity-100 z-20'; // Tarjeta central
+      default: // Ocultar tarjetas fuera del carrusel
+        return 'opacity-0 scale-90 z-0';
+    }
+  };
+
+  const mainCardClasses = 'w-[600px] h-[400px] mx-auto rounded-xl shadow-lg p-6 flex flex-col justify-between';
+
+  return (
+    <div
+      className={`absolute inset-0 transition-all duration-700 ease-in-out ${getTransformStyles()}`}
+    >
+      <div className={`bg-white ${mainCardClasses}`}>
+        <div>
+          <div className="border-l-4 border-blue-500 pl-4 mb-4">
+            <h2 className="font-bold text-gray-800 text-2xl mb-2">{data.company}</h2>
+            <h3 className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent font-medium">
+              {data.role}
+            </h3>
+          </div>
+
+          <div className="flex gap-4 mb-4 text-sm text-gray-600">
+            <div className="flex items-center gap-1">
+              <MapPin size={16} className="text-blue-500" />
+              <span>{data.location}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Calendar size={16} className="text-blue-500" />
+              <span>{data.period}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          {data.responsibilities.map((resp, index) => (
+            <div
+              key={index}
+              className={`rounded-lg p-3 ${position === 'current' ? 'bg-gray-100' : 'bg-white/50'}`}
+            >
+              <div className="flex items-start">
+                <div className="mr-3 h-2 w-2 mt-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-400" />
+                <p className="text-sm text-gray-700">{resp}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FullscreenCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [positions, setPositions] = useState([]);
+
+  useEffect(() => {
+    const getPrevIndex = (index) => (index === 0 ? experiences.length - 1 : index - 1);
+    const getNextIndex = (index) => (index === experiences.length - 1 ? 0 : index + 1);
+
+    const newPositions = experiences.map((_, index) => {
+      if (index === currentIndex) return 'current'; // Tarjeta central
+      if (index === getPrevIndex(currentIndex)) return 'prev'; // Tarjeta izquierda
+      if (index === getNextIndex(currentIndex)) return 'next'; // Tarjeta derecha
+      return ''; // Ocultar otras tarjetas
+    });
+
+    setPositions(newPositions);
+  }, [currentIndex]);
+
+  const nextSlide = () => setCurrentIndex((prev) => (prev === experiences.length - 1 ? 0 : prev + 1));
+  const prevSlide = () => setCurrentIndex((prev) => (prev === 0 ? experiences.length - 1 : prev - 1));
+
+  return (
+    <section className="relative h-screen w-full bg-[#111827] flex items-center justify-center overflow-hidden">
+      <div className="w-full max-w-4xl h-[450px] relative flex items-center justify-center">
+        <div className="relative w-full h-full">
+          {experiences.map((exp, index) => (
+            <ExperienceCard key={index} data={exp} position={positions[index]} />
+          ))}
+        </div>
+
+        <button
+          onClick={prevSlide}
+          className="absolute left-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-sm group z-30"
+        >
+          <ChevronLeft size={24} className="text-white" />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="absolute right-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 backdrop-blur-sm group z-30"
+        >
+          <ChevronRight size={24} className="text-white" />
+        </button>
+      </div>
+    </section>
+  );
+};
+
+export default FullscreenCarousel;
+
+const experiences = [
+  {
+    company: "Native Lab",
+    role: "Desarrollador Web Junior",
+    location: "Lima - Comas, Perú",
+    period: "Julio 2024 - Actualidad",
+    responsibilities: [
+      "Desarrollo aplicaciones web frontend utilizando Angular y React, mejorando la usabilidad y la experiencia del usuario.",
+      "Implemento interfaces responsive utilizando Bootstrap, HTML, CSS y JavaScript y TypeScript, asegurando la compatibilidad con múltiples dispositivos.",
+      "Contribuyo a la mejora de funcionalidades web, optimizando tiempos de carga y la accesibilidad.",
+      "Participo activamente en reuniones de equipo, aportando ideas y proponiendo soluciones innovadoras para desafíos de desarrollo."
+    ]
+  },
+  {
+    company: "DRGT Perú",
+    role: "Asistente de Sistemas",
+    location: "Lima, Perú",
+    period: "Enero 2024 - junio 2024",
+    responsibilities: [
+      "Brindé soporte técnico en hardware y software, asegurando respuestas rápidas y efectivas a los problemas de los usuarios internos.",
+      "Realicé mantenimiento preventivo y correctivo de sistemas y equipos, garantizando su operatividad continua.",
+      "Gestioné y resolví incidencias técnicas, aplicando conocimientos de troubleshooting para asegurar el funcionamiento óptimo de las plataformas de software.",
+      "Colaboré en la configuración y administración de redes para reforzar la seguridad y estabilidad del sistema informático."
+    ]
+  },
+  {
+    company: "Vanels Sport Store",
+    role: "Área de Ventas y Publicidad Digital",
+    location: "Lima, Perú",
+    period: "Marzo 2023 - diciembre 2023",
+    responsibilities: [
+      "Elaboré y analicé reportes de ventas mensuales para apoyar la toma de decisiones estratégicas.",
+      "Monitoreé y evalué constantemente el desempeño del equipo de ventas, proporcionando recomendaciones para alcanzar los objetivos establecidos.",
+      "Coordiné estrategias de publicidad digital para mejorar la visibilidad de los productos y atraer nuevos clientes, utilizando herramientas como Google Ads y redes sociales.",
+      "Creé contenido visual y textual para redes sociales y plataformas de venta en línea, optimizando el alcance y mejorando la conversión de ventas."
+    ]
+  }
+]; -->
