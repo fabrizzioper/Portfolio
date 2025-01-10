@@ -70,7 +70,7 @@ const ExperienceCard = ({ data, position, isDark }) => {
                 className={`rounded-xl p-4 transition-all duration-300 hover:-translate-y-1
                   ${isDark 
                     ? 'bg-gray-800/50 hover:bg-gray-700/50 hover:shadow-lg hover:shadow-blue-500/20' 
-                    : 'bg-white hover:bg-white hover:shadow-lg hover:shadow-purple-400'
+                    : 'bg-white-50 hover:bg-white hover:shadow-lg hover:shadow-purple-400'
                   }`}
               >
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-3">
@@ -132,52 +132,101 @@ const ExperienceCarousel = ({ isDark }) => {
   };
 
   return (
-    <section id="servicios" className={`min-h-screen flex items-center justify-center overflow-hidden relative scroll-mt-24`}>
+    <div 
+      id="experiencia" 
+      className={`
+        relative
+        min-h-screen
+        overflow-hidden
+        flex flex-col
+        justify-center
+        items-center
+        transition-opacity duration-500 ease-in-out
+        scroll-mt-24 
+        pb-8 md:pb-0
+      `}
+    >
       {/* Gradiente de fondo oscuro */}
-      <div className={`absolute inset-0 bg-gradient-to-br from-green-950 via-blue-950 to-purple-950 transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+      <div 
+        className={`
+          absolute inset-0 bg-gradient-to-br from-green-950 via-blue-950 to-purple-950 
+          transition-opacity duration-500 
+          ${isDark ? 'opacity-100' : 'opacity-0'}
+        `}
+      />
       
       {/* Gradiente de fondo claro */}
-      <div className={`absolute inset-0 bg-gradient-to-br from-yellow-100 via-blue-200 to-purple-200 transition-opacity duration-500 ${isDark ? 'opacity-0' : 'opacity-100'}`}></div>
-
       <div 
-        className="w-full max-w-4xl h-[90vh] md:h-[450px] relative flex items-center justify-center"
-        ref={carouselRef}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        <div className="relative w-full h-full">
-          {experiences.map((exp, index) => (
-            <ExperienceCard 
-              key={index} 
-              data={exp} 
-              position={positions[index]} 
-              isDark={isDark}
-            />
-          ))}
-        </div>
+        className={`
+          absolute inset-0 bg-gradient-to-br from-yellow-100 via-blue-200 to-purple-200 
+          transition-opacity duration-500 
+          ${isDark ? 'opacity-0' : 'opacity-100'}
+        `}
+      />
 
-        <button
-          onClick={prevSlide}
-          className={`absolute left-6 top-1/2 -translate-y-1/2 p-2 rounded-full transition-colors duration-500 ease-in-out backdrop-blur-sm group z-30 hidden md:block
-            ${isDark 
-              ? 'bg-white/5 hover:bg-white/10 border border-white/10' 
-              : 'bg-white/30 hover:bg-white/40 border border-white/20'}`}
-        >
-          <ChevronLeft size={16} className={isDark ? 'text-white' : 'text-gray-700'} />
-        </button>
+      {/* Contenido Principal, centrado */}
+      <main className="relative z-10 w-full max-w-6xl px-4 sm:px-4 md:px-4">
+        {/* Sección Experiencia */}
+        <section className="space-y-6">
+          <h2
+            className={`
+              text-2xl font-bold mb-6 px-2 sm:px-0
+              transition-colors duration-500 ease-in-out
+              ${isDark ? 'text-white' : 'text-gray-800'}
+            `}
+          >
+            Experiencia
+          </h2>
 
-        <button
-          onClick={nextSlide}
-          className={`absolute right-6 top-1/2 -translate-y-1/2 p-2 rounded-full transition-colors duration-500 ease-in-out backdrop-blur-sm group z-30 hidden md:block
-            ${isDark 
-              ? 'bg-white/5 hover:bg-white/10 border border-white/10' 
-              : 'bg-white/30 hover:bg-white/40 border border-white/20'}`}
-        >
-          <ChevronRight size={16} className={isDark ? 'text-white' : 'text-gray-700'} />
-        </button>
-      </div>
-    </section>
+          <div 
+            className="w-full max-w-4xl h-[90vh] md:h-[450px] relative flex items-center justify-center mx-auto"
+            ref={carouselRef}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <div className="relative w-full h-full">
+              {experiences.map((exp, index) => (
+                <ExperienceCard 
+                  key={index} 
+                  data={exp} 
+                  position={positions[index]} 
+                  isDark={isDark}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={prevSlide}
+              className={`
+                absolute left-6 top-1/2 -translate-y-1/2 p-2 rounded-full 
+                transition-colors duration-500 ease-in-out backdrop-blur-sm 
+                group z-30 hidden md:block
+                ${isDark 
+                  ? 'bg-white/5 hover:bg-white/10 border border-white/10' 
+                  : 'bg-white/30 hover:bg-white/40 border border-white/20'}
+              `}
+            >
+              <ChevronLeft size={16} className={isDark ? 'text-white' : 'text-gray-700'} />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className={`
+                absolute right-6 top-1/2 -translate-y-1/2 p-2 rounded-full 
+                transition-colors duration-500 ease-in-out backdrop-blur-sm 
+                group z-30 hidden md:block
+                ${isDark 
+                  ? 'bg-white/5 hover:bg-white/10 border border-white/10' 
+                  : 'bg-white/30 hover:bg-white/40 border border-white/20'}
+              `}
+            >
+              <ChevronRight size={16} className={isDark ? 'text-white' : 'text-gray-700'} />
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
   );
 };
 
