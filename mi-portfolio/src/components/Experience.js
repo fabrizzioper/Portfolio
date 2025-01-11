@@ -76,8 +76,8 @@ const ExperienceCard = ({ data, position, isDark }) => {
                 className={`
                   rounded-xl p-4 transition-all duration-300 md:hover:-translate-y-1
                   ${isDark
-                    ? 'bg-gray-800/50 md:hover:bg-gray-700/50 md:hover:shadow-lg md:hover:shadow-blue-500/20'
-                    : 'bg-gray-300/30 md:hover:bg-white md:hover:shadow-lg md:hover:shadow-purple-400'
+                    ? 'bg-gray-800/50 md:hover:bg-gray-700/50 md:hover:shadow-lg md:hover:shadow-white/10'
+                    : 'bg-gray-300/30 md:hover:bg-white md:hover:shadow-lg md:hover:shadow-blue-500/40'
                   }
                   ${index >= 3 ? 'hidden md:block' : ''}
                 `}
