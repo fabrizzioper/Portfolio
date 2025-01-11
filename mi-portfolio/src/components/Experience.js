@@ -179,7 +179,7 @@ const ExperienceCarousel = ({ isDark }) => {
       {/* Contenido Principal, centrado */}
       <main className="relative z-10 w-full max-w-6xl px-4 sm:px-4 md:px-4">
         {/* Sección Experiencia */}
-        <section className="space-y-6">
+        <section className="space-y-8">
           <h2
             className={`
               text-2xl font-bold mb-6 px-2 sm:px-0

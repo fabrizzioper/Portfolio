@@ -42,7 +42,7 @@ const TypewriterName = ({ isDark }) => {
   return (
     <div className="transition-colors duration-2000">
       {/* Contenedor con altura fija */}
-      <div className="h-44 sm:h-16 md:h-16"> {/* Ajusta estas alturas según necesites */}
+      <div className="h-40 sm:h-16 md:h-8"> {/* Ajusta estas alturas según necesites */}
         <h1 className="text-6xl font-bold whitespace-normal lg:whitespace-nowrap">
           {text.split('').map((char, index) => {
             const isNamePart = index >= nameStartIndex;
