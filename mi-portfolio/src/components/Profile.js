@@ -8,7 +8,7 @@ const Profile = ({ isDark }) => {
     <div id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Capa de Gradiente Oscuro */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950 transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'
+        className={`absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-900 to-purple-950 transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'
           }`}
       ></div>
 

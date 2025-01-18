@@ -20,7 +20,7 @@ const Navbar = ({ isDark, toggleDarkMode }) => {
     { text: 'Inicio', href: '#inicio' },
     { text: 'Competencias', href: '#competencias' },
     { text: 'Experiencia', href: '#experiencia' },
-    { text: 'Contacto', href: '#contacto' },
+    { text: 'Proyectos', href: '#proyectos' },
   ];
 
   return (

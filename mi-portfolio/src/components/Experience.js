@@ -165,7 +165,7 @@ const ExperienceCarousel = ({ isDark }) => {
       <div
         className={`
           absolute inset-0 
-          bg-gradient-to-br from-green-950 via-blue-950 to-cyan-800
+          bg-gradient-to-br from-green-900 via-blue-900 to-cyan-800
           transition-opacity duration-500 ease-in-out
           ${isDark ? 'opacity-100' : 'opacity-0'}
         `}

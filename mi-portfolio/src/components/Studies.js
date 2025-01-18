@@ -313,7 +313,7 @@ const Studies = ({ isDark }) => {
       {/* Base container remains the same */}
       <div id="competencias" className={`relative min-h-screen overflow-hidden flex flex-col justify-center items-center transition-opacity duration-500 ease-in-out scroll-mt-24 pb-8 md:pt-24`}>
         {/* Gradient layers remain the same */}
-        <div className={`absolute inset-0 bg-gradient-to-bl from-purple-950 via-blue-950 to-green-950 transition-opacity duration-500 ease-in-out ${isDark ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-0 bg-gradient-to-bl from-purple-950 via-blue-900 to-green-900 transition-opacity duration-500 ease-in-out ${isDark ? 'opacity-100' : 'opacity-0'}`} />
         <div className={`absolute inset-0 bg-gradient-to-bl from-purple-200 via-blue-200 to-yellow-100 transition-opacity duration-500 ease-in-out ${isDark ? 'opacity-0' : 'opacity-100'}`} />
 
         <main className="relative z-10 w-full max-w-6xl px-4 sm:px-4 md:px-4">
