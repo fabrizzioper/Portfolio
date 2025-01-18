@@ -119,16 +119,6 @@ const Studies = ({ isDark }) => {
   const [educationData, setEducationData] = useState([
     {
       id: 'edu-1',
-      title: 'Udemy',
-      period: 'Enero 2025',
-      degree: 'Universidad Java - Cero a Experto - Actualizado (+150 hrs)',
-      tags: ['Java', 'Java Script', 'Servlets', 'Hibernate', 'Spring Boot', 'Jakarta EE'],
-      icon: 'fas fa-graduation-cap',
-      hasCertificate: true,
-      certificateLink: 'https://www.udemy.com/certificate/UC-ccd4e101-0e66-4df0-896f-742f910558a3/'
-    },
-    {
-      id: 'edu-2',
       title: 'UPC - Universidad Perurana de Ciencias Aplicadas',
       period: 'Marzo 2022 – En curso (6to ciclo)',
       degree: 'Ingeniería en Software',
@@ -137,13 +127,23 @@ const Studies = ({ isDark }) => {
       hasCertificate: false
     },
     {
-      id: 'edu-3',
+      id: 'edu-2',
       title: 'ICPNA',
       period: 'Junio 2023 – Octubre 2024',
       degree: 'Inglés',
       tags: ['Intermedio B1'],
       icon: 'fas fa-graduation-cap',
       hasCertificate: false
+    },
+    {
+      id: 'edu-3',
+      title: 'Udemy',
+      period: 'Enero 2025',
+      degree: 'Universidad Java - Cero a Experto - Actualizado (+150 hrs)',
+      tags: ['Java', 'Java Script', 'Servlets', 'Hibernate', 'Spring Boot', 'Jakarta EE'],
+      icon: 'fas fa-graduation-cap',
+      hasCertificate: true,
+      certificateLink: 'https://www.udemy.com/certificate/UC-ccd4e101-0e66-4df0-896f-742f910558a3/'
     },
   ]);
 

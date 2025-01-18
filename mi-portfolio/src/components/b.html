@@ -1,4 +1,5 @@
-<!-- import React, { useState, useEffect, useRef } from 'react'; 
+<!-- // src/components/ExperienceCarousel.js
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Calendar } from 'lucide-react';
 
 const ExperienceCard = ({ data, position, isDark }) => {
@@ -19,28 +20,31 @@ const ExperienceCard = ({ data, position, isDark }) => {
     w-[90vw] 
     md:w-[750px] 
     min-h-[350px] 
-    max-h-[80vh] 
-    overflow-y-auto
+    max-h-[90vh]       /* Aumenta la altura máxima en móviles */
+    md:max-h-[80vh]    /* Mantiene la altura máxima original en pantallas medianas y superiores */
+    overflow-y-visible  /* Evita el desplazamiento en móviles */
+    md:overflow-y-auto  /* Permite el desplazamiento en pantallas medianas y superiores */
     mx-auto 
     rounded-lg 
     shadow-md 
-    p-2  {/* Reducido el padding para móviles */}
+    p-4 
     md:p-6 
-    ${isDark 
-      ? 'bg-gray-900 md:bg-gray-900/50 text-white hover:bg-gray-800 md:hover:bg-gray-800/50' 
-      : 'bg-white md:bg-white/40 text-gray-800 hover:bg-white md:hover:bg-white/60'
+    ${isDark
+      ? 'bg-gray-900 md:bg-gray-900/50 text-white md:hover:bg-gray-800 md:hover:bg-gray-800/50'
+      : 'bg-white/40 text-gray-800 md:hover:bg-white/60 md:hover:bg-white/50'
     }
     flex 
     flex-col 
-    justify-start  {/* Cambiado de justify-between a justify-start */}
-    backdrop-blur-sm
-    transition-all
+    justify-between
+    backdrop-blur-none
+    md:backdrop-blur-sm
+    transition-all 
     duration-500
     ease-in-out
   `;
 
   return (
-    <div className={`absolute inset-0 transition-all duration-700 ease-in-out ${getTransformStyles()}`}>
+    <div className={`absolute inset-0 transition-all duration-700  ease-in-out backdrop-blur-sm md:backdrop-blur-none ${getTransformStyles()}`}>
       <div className={mainCardClasses}>
         <div className="mb-4">
           <h2 className={`text-lg font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-800'}`}>
@@ -70,13 +74,17 @@ const ExperienceCard = ({ data, position, isDark }) => {
             {data.responsibilities.map((resp, index) => (
               <div
                 key={index}
-                className={`rounded-xl p-4 transition-all duration-300 hover:-translate-y-1
-                  ${isDark 
-                    ? 'bg-gray-800/50 hover:bg-gray-700/50 hover:shadow-lg hover:shadow-blue-500/20' 
-                    : 'bg-white/50 hover:bg-white hover:shadow-lg hover:shadow-purple-400'
-                  }`}
+                className={`
+                  rounded-xl p-4 transition-all duration-300 md:hover:-translate-y-1
+                  ${isDark
+                    ? 'bg-gray-800/50 md:hover:bg-gray-700/50 md:hover:shadow-lg md:hover:shadow-white/10'
+                    : 'bg-gray-300/30 md:hover:bg-white md:hover:shadow-lg md:hover:shadow-blue-500/40'
+                  }
+                  ${index >= 3 ? 'hidden md:block' : ''}
+                `}
               >
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-3">
+                  {/* Puedes reemplazar el icono según tus necesidades */}
                   <i className="fas fa-code text-white text-sm"></i>
                 </div>
                 <p className={`text-xs leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
@@ -117,14 +125,14 @@ const ExperienceCarousel = ({ isDark }) => {
   const nextSlide = () => setCurrentIndex((prev) => (prev === experiences.length - 1 ? 0 : prev + 1));
   const prevSlide = () => setCurrentIndex((prev) => (prev === 0 ? experiences.length - 1 : prev - 1));
 
-  const onTouchStart = (e) => {
+  const onTouchStartHandler = (e) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchMoveHandler = (e) => setTouchEnd(e.targetTouches[0].clientX);
 
-  const onTouchEnd = () => {
+  const onTouchEndHandler = () => {
     if (!touchStart || touchEnd === null) return;
     const distance = touchStart - touchEnd;
     if (distance > minSwipeDistance) {
@@ -135,34 +143,35 @@ const ExperienceCarousel = ({ isDark }) => {
   };
 
   return (
-    <div 
-      id="experiencia" 
+    <div
+      id="experiencia"
       className={`
         relative
         min-h-screen
-        pt-12 md:pt-6
+        pt-20 md:pt-6
         overflow-hidden
         flex flex-col
         justify-center
         items-center
         transition-opacity duration-500 ease-in-out
-        scroll-mt-24 
+        scroll-mt-[25px] md:scroll-mt-24 /* Ajuste de scroll-margin-top para móviles y escritorio */
         pb-8 md:pb-0
       `}
     >
       {/* Gradiente de fondo oscuro */}
-      <div 
+      <div
         className={`
-          absolute inset-0 bg-gradient-to-br from-green-950 via-blue-950 to-purple-950 
+          absolute inset-0 bg-gradient-to-br from-green-950 via-blue-950  to-cyan-800
+
           transition-opacity duration-500 
           ${isDark ? 'opacity-100 md:opacity-100' : 'opacity-0'}
         `}
       />
-      
+
       {/* Gradiente de fondo claro */}
-      <div 
+      <div
         className={`
-          absolute inset-0 bg-gradient-to-br from-yellow-100 via-blue-200 to-purple-200 
+          absolute inset-0 bg-gradient-to-br from-yellow-100 via-blue-200 to-green-200 
           transition-opacity duration-500 
           ${isDark ? 'opacity-0' : 'opacity-100 md:opacity-100'}
         `}
@@ -171,7 +180,7 @@ const ExperienceCarousel = ({ isDark }) => {
       {/* Contenido Principal, centrado */}
       <main className="relative z-10 w-full max-w-6xl px-4 sm:px-4 md:px-4">
         {/* Sección Experiencia */}
-        <section className="space-y-6">
+        <section className="space-y-8">
           <h2
             className={`
               text-2xl font-bold mb-6 px-2 sm:px-0
@@ -182,32 +191,33 @@ const ExperienceCarousel = ({ isDark }) => {
             Experiencia
           </h2>
 
-          <div 
-            className="w-full max-w-4xl h-auto md:h-[450px] relative flex items-center justify-center mx-auto"  {/* Cambiado de h-[100vh] a h-auto en móviles */}
+          <div
+            className="w-full max-w-4xl h-[100vh] md:h-[450px] relative flex items-center justify-center mx-auto"
             ref={carouselRef}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
+            onTouchStart={onTouchStartHandler}
+            onTouchMove={onTouchMoveHandler}
+            onTouchEnd={onTouchEndHandler}
           >
             <div className="relative w-full h-full">
               {experiences.map((exp, index) => (
-                <ExperienceCard 
-                  key={index} 
-                  data={exp} 
-                  position={positions[index]} 
+                <ExperienceCard
+                  key={index}
+                  data={exp}
+                  position={positions[index]}
                   isDark={isDark}
                 />
               ))}
             </div>
 
+            {/* Botón de navegación anterior */}
             <button
               onClick={prevSlide}
               className={`
                 absolute left-6 top-1/2 -translate-y-1/2 p-2 rounded-full 
                 transition-colors duration-500 ease-in-out backdrop-blur-sm 
                 group z-30 hidden md:block
-                ${isDark 
-                  ? 'bg-white/5 md:bg-white/10 hover:bg-white/10 md:hover:bg-white/20 border border-white/10' 
+                ${isDark
+                  ? 'bg-white/5 md:bg-white/10 hover:bg-white/10 md:hover:bg-white/20 border border-white/10'
                   : 'bg-white/30 md:bg-white/40 hover:bg-white/40 md:hover:bg-white/50 border border-white/20'
                 }
               `}
@@ -215,14 +225,15 @@ const ExperienceCarousel = ({ isDark }) => {
               <ChevronLeft size={16} className={isDark ? 'text-white' : 'text-gray-700'} />
             </button>
 
+            {/* Botón de navegación siguiente */}
             <button
               onClick={nextSlide}
               className={`
                 absolute right-6 top-1/2 -translate-y-1/2 p-2 rounded-full 
                 transition-colors duration-500 ease-in-out backdrop-blur-sm 
                 group z-30 hidden md:block
-                ${isDark 
-                  ? 'bg-white/5 md:bg-white/10 hover:bg-white/10 md:hover:bg-white/20 border border-white/10' 
+                ${isDark
+                  ? 'bg-white/5 md:bg-white/10 hover:bg-white/10 md:hover:bg-white/20 border border-white/10'
                   : 'bg-white/30 md:bg-white/40 hover:bg-white/40 md:hover:bg-white/50 border border-white/20'
                 }
               `}
