@@ -50,7 +50,7 @@ const Profile = ({ isDark }) => {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 animate-bounce-in">
               {/* Botón de Descargar CV como enlace */}
               <a
-                href="/CV_FabrizzioPereira.pdf" // Ruta al CV en la carpeta public
+                href="/NelsonFPereira_CV.pdf"
                 download
                 className={`flex items-center gap-2 px-8 py-4 rounded-lg font-medium transition-all hover:scale-110 ${isDark
                   ? 'bg-blue-600 hover:bg-blue-500 text-white'

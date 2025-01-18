@@ -19,7 +19,7 @@ const ExperienceCard = ({ data, position, isDark }) => {
     w-[90vw] 
     md:w-[750px] 
     min-h-[350px] 
-    max-h-[90vh]
+    max-h-[95vh]
     overflow-y-visible
     md:overflow-y-auto
     mx-auto 
@@ -28,8 +28,8 @@ const ExperienceCard = ({ data, position, isDark }) => {
     p-4 
     md:p-6 
     ${isDark
-      ? 'bg-gray-900/90 md:bg-gray-900/50 text-white hover:bg-gray-800/90 md:hover:bg-gray-800/50'
-      : 'bg-white/40 text-gray-800 hover:bg-white/95 md:hover:bg-white/60'
+      ? 'bg-gray-900/90 md:bg-gray-900/50 text-white md:hover:bg-gray-900/90 '
+      : 'bg-white/40 text-gray-800 md:hover:bg-white/95 md:hover:bg-white/60'
     }
     flex 
     flex-col 
@@ -79,7 +79,7 @@ const ExperienceCard = ({ data, position, isDark }) => {
                   transition-all duration-300 ease-in-out 
                   hover:-translate-y-1
                   ${isDark
-? 'bg-gray-800/50 md:hover:bg-gray-700/50 md:hover:shadow-lg md:hover:shadow-white/10'
+                    ? 'bg-gray-800/50 md:hover:bg-gray-700/50 md:hover:shadow-lg md:hover:shadow-white/10'
                     : 'bg-gray-300/30 md:hover:bg-white md:hover:shadow-lg md:hover:shadow-blue-500/40'
                   }
                   ${index >= 3 ? 'hidden md:block' : ''}
@@ -259,12 +259,12 @@ const experiences = [
     company: "Native Lab",
     role: "Desarrollador Web Junior",
     location: "Lima - Comas, Perú",
-    period: "Julio 2024 - Actualidad",
+    period: "Julio 2024 – diciembre 2024",
     responsibilities: [
-      "Desarrollo aplicaciones web frontend utilizando Angular y React, mejorando la usabilidad y la experiencia del usuario.",
-      "Implemento interfaces responsive utilizando Bootstrap, HTML, CSS y JavaScript y TypeScript, asegurando la compatibilidad con múltiples dispositivos.",
-      "Contribuyo a la mejora de funcionalidades web, optimizando tiempos de carga y la accesibilidad.",
-      "Participo activamente en reuniones de equipo, aportando ideas y proponiendo soluciones innovadoras para desafíos de desarrollo."
+      "Diseñé el maquetado de aplicaciones web frontend utilizando Angular, Bootstrap y Tailwind, mejorando la experiencia del usuario y la compatibilidad con múltiples dispositivos.",
+      "Desarrollé servicios backend con Java y Spring Boot, implementando APIs, gestionando la lógica en diferentes proyectos.",
+      "Trabajé con bases de datos relacionales utilizando SQL Server y MySQL, diseñando consultas para integrarlas con servicios backend desarrollados en SpringBoot",
+      "Participé activamente en la resolución de desafíos técnicos, colaborando en equipo para proponer soluciones innovadoras que mejoraron la funcionalidad de los proyectos."
     ]
   },
   {
@@ -287,7 +287,7 @@ const experiences = [
     responsibilities: [
       "Elaboré y analicé reportes de ventas mensuales para apoyar la toma de decisiones estratégicas.",
       "Monitoreé y evalué constantemente el desempeño del equipo de ventas, proporcionando recomendaciones para alcanzar los objetivos establecidos.",
-      "Coordiné estrategias de publicidad digital para mejorar la visibilidad de los productos y atraer nuevos clientes, utilizando herramientas como Google Ads y redes sociales.",
+      "Coordiné estrategias de publicidad digital para mejorar la visibilidad de los productos y atraer nuevos clientes, utilizando redes sociales.",
       "Creé contenido visual y textual para redes sociales y plataformas de venta en línea, optimizando el alcance y mejorando la conversión de ventas."
     ]
   }
