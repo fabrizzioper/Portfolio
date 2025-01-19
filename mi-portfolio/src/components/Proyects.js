@@ -1,17 +1,31 @@
-// src/components/Proyects.js
-import React from 'react';
-import { Github, ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Github, ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import image_vanels_1 from '../assets/images/img1.png';
+import image_vanels_2 from '../assets/images/img2.png';
+import image_vanels_3 from '../assets/images/img3.png';
+import image_vanels_4 from '../assets/images/img4.png';
+
+
+
 
 const Proyects = ({ isDark }) => {
-  // 6 proyectos de ejemplo
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const projectsData = [
     {
-      title: "Project A",
-      description: "Descripción breve del proyecto A.",
-      technologies: ["React", "Tailwind", "Node.js"],
-      githubUrl: "https://github.com/user/proyectoA",
-      liveUrl: "https://proyectoA.com",
-      imageUrl: "https://picsum.photos/600/400?random=1"
+      title: "Sistema de Gestión de Inventario",
+      description: "Aplicación web que optimiza la gestión de inventario de productos mediante el uso de inteligencia artificial para el registro automatico de productos mediante el codigo. Permite a los usuarios gestionar el inventario de manera eficiente, facilitando el seguimiento de productos. La aplicación está diseñada para mejorar la eficiencia operativa.",
+      technologies: ["Python", "HTML", "CSS", "Bootstrap", "JavaScript", "Flask", "MySQL"],
+      githubUrl: "https://github.com/fabrizzioper/Sistema_Inventario_Vanels",
+      liveUrl: "https://github.com/fabrizzioper/Sistema_Inventario_Vanels",
+      images: [
+        image_vanels_1,
+        image_vanels_2,
+        image_vanels_3,
+        image_vanels_4,
+      ],
     },
     {
       title: "Project B",
@@ -19,7 +33,10 @@ const Proyects = ({ isDark }) => {
       technologies: ["Angular", "Firebase", "SCSS"],
       githubUrl: "https://github.com/user/proyectoB",
       liveUrl: "https://proyectoB.com",
-      imageUrl: "https://picsum.photos/600/400?random=2"
+      images: [
+        "https://picsum.photos/600/400?random=11",
+        "https://picsum.photos/600/400?random=12",
+      ],
     },
     {
       title: "Project C",
@@ -27,7 +44,12 @@ const Proyects = ({ isDark }) => {
       technologies: ["Vue", "Tailwind", "Express"],
       githubUrl: "https://github.com/user/proyectoC",
       liveUrl: "https://proyectoC.com",
-      imageUrl: "https://picsum.photos/600/400?random=3"
+      images: [
+        "https://picsum.photos/600/400?random=21",
+        "https://picsum.photos/600/400?random=22",
+        "https://picsum.photos/600/400?random=23",
+        "https://picsum.photos/600/400?random=24",
+      ],
     },
     {
       title: "Project D",
@@ -35,7 +57,10 @@ const Proyects = ({ isDark }) => {
       technologies: ["Java", "Spring Boot", "MySQL"],
       githubUrl: "https://github.com/user/proyectoD",
       liveUrl: "https://proyectoD.com",
-      imageUrl: "https://picsum.photos/600/400?random=4"
+      images: [
+        "https://picsum.photos/600/400?random=31",
+        "https://picsum.photos/600/400?random=32",
+      ],
     },
     {
       title: "Project E",
@@ -43,7 +68,11 @@ const Proyects = ({ isDark }) => {
       technologies: ["Next.js", "Prisma", "PostgreSQL"],
       githubUrl: "https://github.com/user/proyectoE",
       liveUrl: "https://proyectoE.com",
-      imageUrl: "https://picsum.photos/600/400?random=5"
+      images: [
+        "https://picsum.photos/600/400?random=41",
+        "https://picsum.photos/600/400?random=42",
+        "https://picsum.photos/600/400?random=43",
+      ],
     },
     {
       title: "Project F",
@@ -51,18 +80,40 @@ const Proyects = ({ isDark }) => {
       technologies: ["React Native", "Expo", "Firebase"],
       githubUrl: "https://github.com/user/proyectoF",
       liveUrl: "https://proyectoF.com",
-      imageUrl: "https://picsum.photos/600/400?random=6"
+      images: [
+        "https://picsum.photos/600/400?random=51",
+        "https://picsum.photos/600/400?random=52",
+      ],
     },
   ];
 
-  // Card con estilos heredados de Studies y ajustes solicitados
+  const handleImageClick = (project) => {
+    setSelectedProject(project);
+    setCurrentImageIndex(0);
+    setIsModalOpen(true);
+  };
+
+  const nextImage = () => {
+    if (!selectedProject) return;
+    setCurrentImageIndex((prev) =>
+      (prev + 1) % selectedProject.images.length
+    );
+  };
+
+  const previousImage = () => {
+    if (!selectedProject) return;
+    setCurrentImageIndex((prev) =>
+      (prev - 1 + selectedProject.images.length) % selectedProject.images.length
+    );
+  };
+
   const ProjectCard = ({
     title,
     description,
     technologies,
     githubUrl,
     liveUrl,
-    imageUrl
+    images
   }) => (
     <div
       className={`
@@ -70,19 +121,20 @@ const Proyects = ({ isDark }) => {
         transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-blue-500/40
         ${isDark ? 'bg-gray-900/50 text-white hover:bg-gray-800/50' : 'bg-white/40 text-gray-800 hover:bg-white/60'}
         2xl:p-4
-        min-h-[450px]  /* Aumentamos la altura mínima */
+        min-h-[450px]
       `}
     >
-      {/* Imagen con más altura */}
-      <div className="w-full h-60 md:h-72 overflow-hidden rounded-md mb-4">
+      <div
+        className="w-full h-60 md:h-72 overflow-hidden rounded-md mb-4 cursor-pointer"
+        onClick={() => handleImageClick({ title, images })}
+      >
         <img
-          src={imageUrl}
+          src={images[0]}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         />
       </div>
 
-      {/* Título */}
       <h3
         className={`
           text-base font-semibold mb-2 transition-colors duration-500 ease-in-out
@@ -92,17 +144,15 @@ const Proyects = ({ isDark }) => {
         {title}
       </h3>
 
-      {/* Descripción */}
       <p
         className={`
-          text-sm leading-relaxed transition-colors duration-500 ease-in-out mb-4
+          text-sm leading-relaxed mb-4 transition-colors duration-500 ease-in-out
           ${isDark ? 'text-gray-300' : 'text-gray-600'}
         `}
       >
         {description}
       </p>
 
-      {/* Tecnologías */}
       <div className="flex flex-wrap gap-2 mb-6">
         {technologies.map((tech, index) => (
           <span
@@ -117,7 +167,6 @@ const Proyects = ({ isDark }) => {
         ))}
       </div>
 
-      {/* Botones centrados */}
       <div className="mt-auto flex justify-center gap-5 pt-2">
         <a
           href={githubUrl}
@@ -148,58 +197,150 @@ const Proyects = ({ isDark }) => {
   );
 
   return (
-    <div
-      id="proyectos"
-      className={`
-        relative min-h-screen overflow-hidden
-        flex flex-col justify-center items-center
-        transition-opacity duration-500 ease-in-out
-        scroll-mt-20 pb-8 md:pt-28
-      `}
-    >
-      {/* Gradiente oscuro (igual que en Studies) */}
+    <>
       <div
+        id="proyectos"
         className={`
-          absolute inset-0
-          bg-gradient-to-bl
-          from-cyan-800 via-blue-900 to-rose-900
-          transition-opacity duration-500 ease-in-out
-          ${isDark ? 'opacity-100' : 'opacity-0'}
+          relative min-h-screen overflow-hidden flex flex-col justify-center items-center
+          transition-opacity duration-500 ease-in-out scroll-mt-20 pb-20 md:pt-28
         `}
-      />
-      {/* Gradiente claro (igual que en Studies) */}
-      <div
-        className={`
-          absolute inset-0
-          bg-gradient-to-bl
-          from-green-200 via-blue-200 to-pink-100
-          transition-opacity duration-500 ease-in-out
-          ${isDark ? 'opacity-0' : 'opacity-100'}
-        `}
-      />
+      >
+        <div
+          className={`
+            absolute inset-0 bg-gradient-to-bl from-cyan-800 via-blue-900 to-rose-900
+            transition-opacity duration-500 ease-in-out
+            ${isDark ? 'opacity-100' : 'opacity-0'}
+          `}
+        />
+        <div
+          className={`
+            absolute inset-0 bg-gradient-to-bl from-green-200 via-blue-200 to-pink-100
+            transition-opacity duration-500 ease-in-out
+            ${isDark ? 'opacity-0' : 'opacity-100'}
+          `}
+        />
 
-      <main className="relative z-10 w-full max-w-6xl px-4 sm:px-4 md:px-4">
-        <section className="space-y-6">
-          {/* Título principal */}
-          <h2
+        <main className="relative z-10 w-full max-w-6xl px-4 sm:px-4 md:px-4">
+          <section className="space-y-6">
+            <h2
+              className={`
+                text-2xl font-bold mb-6 px-2 sm:px-0 transition-colors duration-500 ease-in-out
+                ${isDark ? 'text-white' : 'text-gray-800'}
+              `}
+            >
+              Proyectos
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+              {projectsData.map((project, idx) => (
+                <ProjectCard key={idx} {...project} />
+              ))}
+            </div>
+          </section>
+        </main>
+      </div>
+
+      {isModalOpen && selectedProject && (
+        // Eliminamos el onClick del contenedor principal para 
+        // que no se cierre al hacer clic fuera del modal
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+        // Nota: Al quitar onClick aquí, el modal ya no cierra 
+        // al hacer clic fuera. Se cierra únicamente con la X.
+        >
+          <div
+            className="absolute inset-0 bg-black bg-opacity-75 overflow-hidden"
+            style={{ overflow: 'hidden' }}
+          />
+
+          <div
             className={`
-              text-2xl font-bold mb-6 px-2 sm:px-0
-              transition-colors duration-500 ease-in-out
-              ${isDark ? 'text-white' : 'text-gray-800'}
+              relative w-full max-w-4xl mx-4 shadow-xl rounded-lg overflow-hidden
+              ${isDark ? 'bg-gray-900' : 'bg-white/90 backdrop-blur-sm'}
             `}
+          // onClick={(e) => e.stopPropagation()} // ya no es necesario
           >
-            Proyectos
-          </h2>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className={`
+                absolute top-2 right-2 z-10 p-2 rounded-full
+                ${isDark
+                  ? 'bg-gray-800 hover:bg-gray-700 text-white'
+                  : 'bg-white hover:bg-gray-100 text-gray-800'
+                }
+                transition-colors
+              `}
+            >
+              <X className="w-6 h-6" />
+            </button>
 
-          {/* Grid: 1 columna en móvil, 2 en md, 3 en lg */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-            {projectsData.map((project, idx) => (
-              <ProjectCard key={idx} {...project} />
-            ))}
+            <div className="relative aspect-video">
+              <img
+                src={selectedProject.images[currentImageIndex]}
+                alt={`${selectedProject.title} - Imagen ${currentImageIndex + 1}`}
+                className="w-full h-full object-cover"
+              />
+
+              <button
+                onClick={previousImage}
+                className={`
+                  absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full
+                  ${isDark
+                    ? 'bg-gray-800 hover:bg-gray-700 text-white'
+                    : 'bg-white hover:bg-gray-100 text-gray-800'
+                  }
+                  transition-colors
+                `}
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
+              <button
+                onClick={nextImage}
+                className={`
+                  absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full
+                  ${isDark
+                    ? 'bg-gray-800 hover:bg-gray-700 text-white'
+                    : 'bg-white hover:bg-gray-100 text-gray-800'
+                  }
+                  transition-colors
+                `}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                {selectedProject.images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`
+                      w-2 h-2 rounded-full transition-colors
+                      ${index === currentImageIndex
+                        ? (isDark ? 'bg-gray-100' : 'bg-gray-100')
+                        : (isDark ? 'bg-gray-800' : 'bg-gray-800')
+                      }
+                    `}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      )}
+
+      {isModalOpen && (
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              body {
+                overflow: hidden;
+              }
+            `
+          }}
+        />
+      )}
+    </>
   );
 };
 

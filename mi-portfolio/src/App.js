@@ -4,13 +4,14 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Studies from './components/Studies';
 import Experience from './components/Experience';
-import Proyects from './components/Proyects'; // <-- Importamos nuestro nuevo componente
+import Proyects from './components/Proyects';
+
 
 const App = () => {
   const [isDark, setIsDark] = useState(true);
 
   const toggleDarkMode = () => {
-    setIsDark(prev => !prev);
+    setIsDark((prev) => !prev);
   };
 
   useEffect(() => {
@@ -27,9 +28,9 @@ const App = () => {
       <Profile isDark={isDark} />
       <Studies isDark={isDark} />
       <Experience isDark={isDark} />
-
-      {/* Aquí mostramos nuestro nuevo componente */}
       <Proyects isDark={isDark} />
+
+    
     </div>
   );
 };

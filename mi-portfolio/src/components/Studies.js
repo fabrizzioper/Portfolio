@@ -120,7 +120,7 @@ const Studies = ({ isDark }) => {
     {
       id: 'edu-1',
       title: 'UPC - Universidad Perurana de Ciencias Aplicadas',
-      period: 'Marzo 2022 – En curso (6to ciclo)',
+      period: 'Marzo 2022 – En curso (7mo ciclo)',
       degree: 'Ingeniería en Software',
       tags: ['Desarrollo de Software', 'Gestión de Proyectos'],
       icon: 'fas fa-university',
