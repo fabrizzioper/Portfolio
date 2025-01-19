@@ -4,6 +4,9 @@ import image_vanels_1 from '../assets/images/img1.png';
 import image_vanels_2 from '../assets/images/img2.png';
 import image_vanels_3 from '../assets/images/img3.png';
 import image_vanels_4 from '../assets/images/img4.png';
+import image_redes_1 from '../assets/images/img1_redes.png';
+import image_redes_2 from '../assets/images/img2_redes.png';
+import image_redes_3 from '../assets/images/img3_redes.png';
 
 
 
@@ -16,7 +19,7 @@ const Proyects = ({ isDark }) => {
   const projectsData = [
     {
       title: "Sistema de Gestión de Inventario",
-      description: "Aplicación web que optimiza la gestión de inventario de productos mediante el uso de inteligencia artificial para el registro automatico de productos mediante el codigo. Permite a los usuarios gestionar el inventario de manera eficiente, facilitando el seguimiento de productos. La aplicación está diseñada para mejorar la eficiencia operativa.",
+      description: "Aplicación web que optimiza la gestión de inventario de productos mediante el uso de inteligencia artificial para el registro automatico mediante el codigo de producto, ademas de permitir a los usuarios gestionar el inventario de manera eficiente.",
       technologies: ["Python", "HTML", "CSS", "Bootstrap", "JavaScript", "Flask", "MySQL"],
       githubUrl: "https://github.com/fabrizzioper/Sistema_Inventario_Vanels",
       liveUrl: "https://github.com/fabrizzioper/Sistema_Inventario_Vanels",
@@ -28,61 +31,15 @@ const Proyects = ({ isDark }) => {
       ],
     },
     {
-      title: "Project B",
-      description: "Descripción breve del proyecto B.",
-      technologies: ["Angular", "Firebase", "SCSS"],
-      githubUrl: "https://github.com/user/proyectoB",
-      liveUrl: "https://proyectoB.com",
+      title: "Optimización de la Red de Internet en Lima",
+      description: "Este proyecto es una aplicación web que busca optimizar la distribución de la red de internet en Lima. Esta permite visualizar y gestionar datos relacionados con distritos, utiliza nodos y conexiones utilizando el algoritmo de dijkstra para encontrar el camino mas corto, para mejorar la infraestructura de la red.",
+      technologies: ["Django", "Python","SQLite", "HTML", "CSS", "JavaScript", "Boostrap"],
+      githubUrl: "https://github.com/fabrizzioper/Optimizacion-Red-Internet",
+      liveUrl: "https://github.com/fabrizzioper/Optimizacion-Red-Internet",
       images: [
-        "https://picsum.photos/600/400?random=11",
-        "https://picsum.photos/600/400?random=12",
-      ],
-    },
-    {
-      title: "Project C",
-      description: "Descripción breve del proyecto C.",
-      technologies: ["Vue", "Tailwind", "Express"],
-      githubUrl: "https://github.com/user/proyectoC",
-      liveUrl: "https://proyectoC.com",
-      images: [
-        "https://picsum.photos/600/400?random=21",
-        "https://picsum.photos/600/400?random=22",
-        "https://picsum.photos/600/400?random=23",
-        "https://picsum.photos/600/400?random=24",
-      ],
-    },
-    {
-      title: "Project D",
-      description: "Descripción breve del proyecto D.",
-      technologies: ["Java", "Spring Boot", "MySQL"],
-      githubUrl: "https://github.com/user/proyectoD",
-      liveUrl: "https://proyectoD.com",
-      images: [
-        "https://picsum.photos/600/400?random=31",
-        "https://picsum.photos/600/400?random=32",
-      ],
-    },
-    {
-      title: "Project E",
-      description: "Descripción breve del proyecto E.",
-      technologies: ["Next.js", "Prisma", "PostgreSQL"],
-      githubUrl: "https://github.com/user/proyectoE",
-      liveUrl: "https://proyectoE.com",
-      images: [
-        "https://picsum.photos/600/400?random=41",
-        "https://picsum.photos/600/400?random=42",
-        "https://picsum.photos/600/400?random=43",
-      ],
-    },
-    {
-      title: "Project F",
-      description: "Descripción breve del proyecto F.",
-      technologies: ["React Native", "Expo", "Firebase"],
-      githubUrl: "https://github.com/user/proyectoF",
-      liveUrl: "https://proyectoF.com",
-      images: [
-        "https://picsum.photos/600/400?random=51",
-        "https://picsum.photos/600/400?random=52",
+        image_redes_1,
+        image_redes_2,
+        image_redes_3,
       ],
     },
   ];
@@ -137,7 +94,7 @@ const Proyects = ({ isDark }) => {
 
       <h3
         className={`
-          text-base font-semibold mb-2 transition-colors duration-500 ease-in-out
+          text-center font-bold mb-2 transition-colors duration-500 ease-in-out
           ${isDark ? 'text-white' : 'text-gray-800'}
         `}
       >
@@ -146,14 +103,14 @@ const Proyects = ({ isDark }) => {
 
       <p
         className={`
-          text-sm leading-relaxed mb-4 transition-colors duration-500 ease-in-out
+          text-sm text-justify leading-relaxed mb-4 transition-colors duration-500 ease-in-out
           ${isDark ? 'text-gray-300' : 'text-gray-600'}
         `}
       >
         {description}
       </p>
 
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap justify-center gap-2 mb-2">
         {technologies.map((tech, index) => (
           <span
             key={index}
@@ -231,7 +188,7 @@ const Proyects = ({ isDark }) => {
               Proyectos
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 items-stretch">
               {projectsData.map((project, idx) => (
                 <ProjectCard key={idx} {...project} />
               ))}
